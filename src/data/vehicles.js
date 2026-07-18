@@ -1,0 +1,78 @@
+// Dummy fleet data — drives /vehicles (docs/06_ROUTING.md).
+// Bilingual fields use the { id, en } shape (docs/08).
+const img = (seed) => `https://picsum.photos/seed/${seed}/1000/700`;
+
+export const vehicles = [
+  {
+    id: 'veh-01',
+    slug: 'toyota-avanza',
+    name: 'Toyota Avanza',
+    type: 'MPV',
+    seats: 6,
+    luggage: 3,
+    transmission: 'Manual / Automatic',
+    ac: true,
+    pricePerDay: 500000,
+    currency: 'IDR',
+    image: img('avanza'),
+    features: {
+      id: ['AC dingin', 'Driver berpengalaman', 'Gratis bensin dalam kota'],
+      en: ['Cold AC', 'Experienced driver', 'Free in-city fuel'],
+    },
+    popular: true,
+  },
+  {
+    id: 'veh-02',
+    slug: 'toyota-hiace',
+    name: 'Toyota Hiace Premio',
+    type: 'Van',
+    seats: 14,
+    luggage: 8,
+    transmission: 'Manual',
+    ac: true,
+    pricePerDay: 1200000,
+    currency: 'IDR',
+    image: img('hiace'),
+    features: {
+      id: ['Kabin luas', 'Cocok untuk grup', 'USB charging'],
+      en: ['Spacious cabin', 'Great for groups', 'USB charging'],
+    },
+    popular: true,
+  },
+  {
+    id: 'veh-03',
+    slug: 'toyota-alphard',
+    name: 'Toyota Alphard',
+    type: 'Luxury MPV',
+    seats: 6,
+    luggage: 4,
+    transmission: 'Automatic',
+    ac: true,
+    pricePerDay: 2500000,
+    currency: 'IDR',
+    image: img('alphard'),
+    features: {
+      id: ['Kursi captain seat', 'Interior mewah', 'VIP service'],
+      en: ['Captain seats', 'Luxurious interior', 'VIP service'],
+    },
+    popular: false,
+  },
+  {
+    id: 'veh-04',
+    slug: 'toyota-innova-reborn',
+    name: 'Toyota Innova Reborn',
+    type: 'MPV',
+    seats: 7,
+    luggage: 4,
+    transmission: 'Automatic',
+    ac: true,
+    pricePerDay: 750000,
+    currency: 'IDR',
+    image: img('innova'),
+    features: {
+      id: ['Nyaman untuk keluarga', 'Bagasi luas', 'Driver ramah'],
+      en: ['Comfortable for families', 'Large luggage space', 'Friendly driver'],
+    },
+    popular: true,
+  },
+];

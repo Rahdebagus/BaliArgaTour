@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "destinations": "Destinasi",
+    "packages": "Paket Tour",
+    "vehicles": "Transport",
+    "gallery": "Galeri",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "booking": "Booking"
+  },
+  "common": {
+    "all": "Semua",
+    "seeDetail": "Detail",
+    "startingFrom": "Mulai dari",
+    "perDay": "Per hari",
+    "rent": "Sewa",
+    "chatWhatsapp": "Chat WhatsApp",
+    "bookViaWhatsapp": "Booking via WhatsApp",
+    "loading": "Memuat...",
+    "seats": "kursi",
+    "luggage": "bagasi",
+    "popular": "Populer"
+  },
+  "hero": {
+    "eyebrow": "Welcome to Bali",
+    "highlight": "Tour & Travel",
+    "ctaPackages": "Lihat Paket Tour",
+    "ctaGallery": "Galeri"
+  },
+  "home": {
+    "packagesEyebrow": "Paket Populer",
+    "packagesTitle": "Paket Tour Pilihan",
+    "packagesSubtitle": "Pengalaman terbaik dengan harga transparan dan itinerary fleksibel.",
+    "seeAllPackages": "Lihat Semua Paket",
+    "destinationsEyebrow": "Destinasi",
+    "destinationsTitle": "Jelajahi Keindahan Bali",
+    "destinationsSubtitle": "Dari sawah terasering hingga tebing eksotis di tepi samudra.",
+    "seeAllDestinations": "Lihat Semua Destinasi",
+    "vehiclesEyebrow": "Transport",
+    "vehiclesTitle": "Armada Nyaman & Terawat",
+    "vehiclesSubtitle": "Pilih kendaraan sesuai kebutuhan perjalanan Anda.",
+    "seeAllVehicles": "Lihat Semua Armada",
+    "galleryEyebrow": "Galeri",
+    "galleryTitle": "Momen Tak Terlupakan",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Pertanyaan yang Sering Diajukan"
+  },
+  "cta": {
+    "title": "Siap Memulai Petualangan di Bali?",
+    "subtitle": "Hubungi kami sekarang dan dapatkan penawaran terbaik untuk liburan impian Anda.",
+    "chat": "Chat WhatsApp",
+    "contactUs": "Hubungi Kami"
+  },
+  "footer": {
+    "menu": "Menu",
+    "contact": "Kontak",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with ♥ in Bali"
+  },
+  "destinationsPage": {
+    "title": "Destinasi Wisata Bali",
+    "subtitle": "Temukan tempat-tempat paling memukau di Pulau Dewata."
+  },
+  "packagesPage": {
+    "title": "Paket Tour Bali",
+    "subtitle": "Pilih paket yang sesuai dengan gaya liburan Anda."
+  },
+  "packageDetail": {
+    "about": "Tentang Paket Ini",
+    "itinerary": "Itinerary",
+    "includes": "Termasuk",
+    "excludes": "Tidak Termasuk",
+    "duration": "Durasi",
+    "capacity": "Kapasitas",
+    "reviews": "ulasan",
+    "seeOther": "Lihat paket lain",
+    "bookingMsg": "Halo, saya tertarik dengan paket \"{{title}}\". Mohon info lebih lanjut.",
+    "notFoundTitle": "Paket tidak ditemukan",
+    "notFoundText": "Maaf, paket yang Anda cari tidak tersedia.",
+    "backToList": "Kembali ke Daftar Paket"
+  },
+  "vehiclesPage": {
+    "title": "Sewa Transport & Armada",
+    "subtitle": "Kendaraan nyaman, bersih, dan terawat dengan driver profesional."
+  },
+  "galleryPage": {
+    "title": "Galeri Foto",
+    "subtitle": "Kumpulan momen indah dari perjalanan wisata bersama kami."
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "subtitle": "Mengenal lebih dekat {{name}}.",
+    "storyEyebrow": "Cerita Kami",
+    "storyTitle": "Partner Terbaik Liburan Anda di Bali",
+    "storyP1": "{{name}} hadir untuk memberikan pengalaman wisata premium di Pulau Dewata. Dengan pengalaman lebih dari satu dekade, kami memahami betul bagaimana menciptakan liburan yang berkesan.",
+    "storyP2": "Dari paket tour budaya, petualangan alam, hingga sewa transport pribadi — semuanya kami rancang dengan mengutamakan kenyamanan dan kepuasan Anda.",
+    "valuesEyebrow": "Nilai Kami",
+    "valuesTitle": "Mengapa Memilih Kami",
+    "values": {
+      "trusted": { "title": "Terpercaya", "desc": "Ribuan wisatawan puas dengan layanan kami selama bertahun-tahun." },
+      "friendly": { "title": "Pelayanan Ramah", "desc": "Driver dan tim yang ramah, siap membantu kapan pun dibutuhkan." },
+      "flexible": { "title": "Fleksibel", "desc": "Itinerary dapat disesuaikan sepenuhnya dengan keinginan Anda." },
+      "quality": { "title": "Berkualitas", "desc": "Armada terawat dan destinasi pilihan untuk pengalaman terbaik." }
+    }
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Punya pertanyaan atau ingin memesan? Kami siap membantu.",
+    "infoTitle": "Informasi Kontak",
+    "address": "Alamat",
+    "phone": "Telepon",
+    "email": "Email",
+    "chatDirect": "Chat Langsung via WhatsApp",
+    "mapTitle": "Lokasi kami",
+    "formTitle": "Kirim Pesan",
+    "nameLabel": "Nama Lengkap",
+    "namePlaceholder": "Nama Anda",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@contoh.com",
+    "messageLabel": "Pesan",
+    "messagePlaceholder": "Tulis pesan Anda di sini...",
+    "send": "Kirim Pesan",
+    "waIntro": "Halo {{name}}!",
+    "waName": "Nama",
+    "waEnquiry": "Halo, saya ingin bertanya tentang paket tour."
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "text": "Sepertinya Anda tersesat. Mari kembali ke jalur wisata yang benar.",
+    "back": "Kembali ke Beranda"
+  },
+  "whatsapp": {
+    "greeting": "Halo! 👋 Ada yang bisa kami bantu untuk liburan Anda di Bali?",
+    "start": "Mulai Chat"
+  }
+}

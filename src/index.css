@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #0f5e9c;
+    --color-secondary: #ffc72c;
+    --color-background: #f8fbff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-primary-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Glassmorphism surface — docs/04_DESIGN_SYSTEM.md */
+  .glass {
+    @apply bg-white/60 backdrop-blur-glass border border-white/40 shadow-glass;
+  }
+
+  .glass-dark {
+    @apply bg-primary-900/40 backdrop-blur-glass border border-white/10;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-primary px-6 py-3 font-semibold text-white shadow-glass transition-transform hover:scale-[1.03] active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-accent px-6 py-3 font-semibold text-primary-900 shadow-glass transition-transform hover:scale-[1.03] active:scale-95;
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+}
+

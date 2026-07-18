@@ -1,0 +1,3 @@
+# SPA fallback for Netlify & Cloudflare Pages — every route serves index.html
+# so client-side routing works on refresh/deep-link.
+/*    /index.html   200

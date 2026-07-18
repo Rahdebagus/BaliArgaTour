@@ -1,0 +1,137 @@
+{
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "packages": "Tour Packages",
+    "vehicles": "Transport",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact",
+    "booking": "Booking"
+  },
+  "common": {
+    "all": "All",
+    "seeDetail": "Details",
+    "startingFrom": "Starting from",
+    "perDay": "Per day",
+    "rent": "Rent",
+    "chatWhatsapp": "Chat on WhatsApp",
+    "bookViaWhatsapp": "Book via WhatsApp",
+    "loading": "Loading...",
+    "seats": "seats",
+    "luggage": "luggage",
+    "popular": "Popular"
+  },
+  "hero": {
+    "eyebrow": "Welcome to Bali",
+    "highlight": "Tour & Travel",
+    "ctaPackages": "View Tour Packages",
+    "ctaGallery": "Gallery"
+  },
+  "home": {
+    "packagesEyebrow": "Popular Packages",
+    "packagesTitle": "Featured Tour Packages",
+    "packagesSubtitle": "The best experiences with transparent prices and flexible itineraries.",
+    "seeAllPackages": "View All Packages",
+    "destinationsEyebrow": "Destinations",
+    "destinationsTitle": "Explore the Beauty of Bali",
+    "destinationsSubtitle": "From terraced rice fields to exotic clifftops by the ocean.",
+    "seeAllDestinations": "View All Destinations",
+    "vehiclesEyebrow": "Transport",
+    "vehiclesTitle": "Comfortable & Well-Maintained Fleet",
+    "vehiclesSubtitle": "Choose a vehicle that fits your travel needs.",
+    "seeAllVehicles": "View All Vehicles",
+    "galleryEyebrow": "Gallery",
+    "galleryTitle": "Unforgettable Moments",
+    "faqEyebrow": "FAQ",
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "cta": {
+    "title": "Ready to Start Your Adventure in Bali?",
+    "subtitle": "Contact us now and get the best deals for your dream holiday.",
+    "chat": "Chat on WhatsApp",
+    "contactUs": "Contact Us"
+  },
+  "footer": {
+    "menu": "Menu",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with ♥ in Bali"
+  },
+  "destinationsPage": {
+    "title": "Bali Tourist Destinations",
+    "subtitle": "Discover the most stunning places on the Island of the Gods."
+  },
+  "packagesPage": {
+    "title": "Bali Tour Packages",
+    "subtitle": "Choose a package that matches your travel style."
+  },
+  "packageDetail": {
+    "about": "About This Package",
+    "itinerary": "Itinerary",
+    "includes": "Included",
+    "excludes": "Not Included",
+    "duration": "Duration",
+    "capacity": "Capacity",
+    "reviews": "reviews",
+    "seeOther": "View other packages",
+    "bookingMsg": "Hello, I'm interested in the \"{{title}}\" package. Please send more details.",
+    "notFoundTitle": "Package not found",
+    "notFoundText": "Sorry, the package you are looking for is not available.",
+    "backToList": "Back to Packages"
+  },
+  "vehiclesPage": {
+    "title": "Transport & Fleet Rental",
+    "subtitle": "Comfortable, clean, well-maintained vehicles with professional drivers."
+  },
+  "galleryPage": {
+    "title": "Photo Gallery",
+    "subtitle": "A collection of beautiful moments from journeys with us."
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Get to know {{name}} better.",
+    "storyEyebrow": "Our Story",
+    "storyTitle": "Your Best Holiday Partner in Bali",
+    "storyP1": "{{name}} is here to deliver premium travel experiences on the Island of the Gods. With over a decade of experience, we know exactly how to create a memorable holiday.",
+    "storyP2": "From cultural tours and nature adventures to private transport rental — everything is designed with your comfort and satisfaction in mind.",
+    "valuesEyebrow": "Our Values",
+    "valuesTitle": "Why Choose Us",
+    "values": {
+      "trusted": { "title": "Trusted", "desc": "Thousands of travelers satisfied with our service over the years." },
+      "friendly": { "title": "Friendly Service", "desc": "Friendly drivers and team, ready to help whenever you need." },
+      "flexible": { "title": "Flexible", "desc": "Itineraries can be fully tailored to your wishes." },
+      "quality": { "title": "Quality", "desc": "Well-kept fleet and handpicked destinations for the best experience." }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have a question or want to book? We're ready to help.",
+    "infoTitle": "Contact Information",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "chatDirect": "Chat Directly on WhatsApp",
+    "mapTitle": "Our location",
+    "formTitle": "Send a Message",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "send": "Send Message",
+    "waIntro": "Hello {{name}}!",
+    "waName": "Name",
+    "waEnquiry": "Hello, I would like to ask about your tour packages."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "Looks like you're lost. Let's get you back on the right route.",
+    "back": "Back to Home"
+  },
+  "whatsapp": {
+    "greeting": "Hi! 👋 How can we help with your holiday in Bali?",
+    "start": "Start Chat"
+  }
+}
