@@ -1,6 +1,8 @@
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as OptimizedImage } from './OptimizedImage';
+export { default as Price } from './Price';
+export { default as DragCarousel } from './DragCarousel';
 export { default as Hero } from './Hero';
 export { default as Gallery } from './Gallery';
 export { default as FAQ } from './FAQ';

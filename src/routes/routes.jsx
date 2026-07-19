@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import { packages } from '@/features/packages';
+import { destinations } from '@/features/destinations';
 
 // Route records consumed by vite-react-ssg (SSG) and react-router (runtime).
 // Lazy imports = per-route code-splitting; getStaticPaths enumerates the
@@ -12,6 +13,15 @@ export const routes = [
     children: [
       { index: true, Component: lazy(() => import('@/pages/Home')) },
       { path: 'destinations', Component: lazy(() => import('@/pages/Destinations')) },
+      {
+        // Every destination is prerendered, showcase entries included — each
+        // one is a real, linkable page, and a static file also means a direct
+        // hit or a refresh on this URL is served without touching the SPA
+        // fallback.
+        path: 'destinations/:slug',
+        Component: lazy(() => import('@/pages/DestinationDetail')),
+        getStaticPaths: () => destinations.map((d) => `/destinations/${d.slug}`),
+      },
       { path: 'packages', Component: lazy(() => import('@/pages/Packages')) },
       {
         path: 'packages/:slug',

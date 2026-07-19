@@ -62,19 +62,32 @@ with `fetchpriority="high"` and a `<link rel="preload">`. All others are lazy.
 | --- | --- |
 | `about-story` | `/about` — "Our Story" split image (below the fold, lazy) |
 
-## 4. Destinations (`/destinations`, Home section 03)
+## 4. Destinations (`/destinations`, Home sections 01 & 04)
 
-Card image for each destination (lazy). On `/packages/:slug` the matching
-package image is reused as the LCP header.
+Card image for each destination — used on the destination card, the Top
+Destinations carousel, and as the `og:image` for `/destinations/:slug`.
 
 | Base filename | Destination |
 | --- | --- |
-| `ubud` | Ubud |
-| `nusapenida` | Nusa Penida |
+| `ubud` | Ubud Highlights Tour |
+| `nusapenida` | Day Trip in Nusa Penida |
+| `uluwatu` | South Bali Uluwatu Tour Experience |
+| `karangasem` | Karangasem Tour |
 | `tanahlot` | Tanah Lot |
 | `kintamani` | Kintamani |
-| `uluwatu` | Uluwatu |
 | `sekumpul` | Sekumpul Waterfall |
+
+### Destination detail galleries (`/destinations/:slug`)
+
+The first image is the **LCP** on that detail page (eager). Bookable tours reuse
+their matching package-gallery images; Karangasem has its own set.
+
+| Base filenames | Destination detail page |
+| --- | --- |
+| `pkgubud1`, `pkgubud2`, `pkgubud3`, `ubud` | Ubud Highlights Tour |
+| `pkgpenida1`, `pkgpenida2`, `pkgpenida3`, `nusapenida` | Day Trip in Nusa Penida |
+| `pkguluwatu1`, `pkguluwatu2`, `pkguluwatu3`, `uluwatu` | South Bali Uluwatu Tour |
+| `karangasem-1`, `karangasem-2`, `karangasem-3`, `karangasem` | Karangasem Tour |
 
 ## 5. Packages (`/packages`, Home section 01)
 
@@ -97,16 +110,19 @@ detail page `/packages/:slug`, and its `og:image`.
 | `pkgbatur1`, `pkgbatur2`, `pkgbatur3` | Mount Batur Sunrise Trekking |
 | `pkguluwatu1`, `pkguluwatu2`, `pkguluwatu3` | Uluwatu Sunset & Kecak Dance |
 
-## 6. Vehicles (`/vehicles`, Home section 06)
+## 6. Vehicles (`/vehicles`, Home section 07, booking vehicle picker)
 
-Card image for each vehicle (lazy).
+Card image for each vehicle (lazy). **These live in a `vehicles/`
+subdirectory** — mirror it under `source-images/` (i.e.
+`source-images/vehicles/toyota-zenix-2024.jpg`) and `npm run images:optimize`
+reproduces the folder in `public/images/`.
 
 | Base filename | Vehicle |
 | --- | --- |
-| `avanza` | Toyota Avanza |
-| `hiace` | Toyota Hiace Premio |
-| `alphard` | Toyota Alphard |
-| `innova` | Toyota Innova Reborn |
+| `vehicles/toyota-veloz-2024` | Toyota Veloz 2024 |
+| `vehicles/toyota-zenix-2024` | Toyota Zenix 2024 |
+| `vehicles/toyota-hiace-2023` | Toyota Hiace 2023 |
+| `vehicles/toyota-elf-2023` | Toyota Elf 2023 |
 
 ## 7. Gallery (`/gallery`, Home sections 02 & 04)
 
@@ -126,12 +142,18 @@ Masonry grid (all lazy). Row hint = the grid span used in the layout.
 
 ---
 
-**Total: 45 base images** (7 headers + 1 OG + 1 about + 6 destinations +
-4 package + 12 package-gallery + 4 vehicles + 9 gallery + the unused
-`page-header`).
+**Total: 50 base images** (7 headers + 1 OG + 1 about + 7 destinations +
+3 Karangasem gallery + 4 package + 12 package-gallery + 4 vehicles + 9 gallery +
+the unused `page-header`).
 
 > The repo currently ships placeholder variants for every name above, so the
 > site builds and renders before you add real photos. Optimizing a real source
 > image overwrites only that name's variants — untouched names keep their
 > placeholders. If `source-images/` is empty, `npm run images:optimize` is a
 > no-op and the build still succeeds.
+
+> **Adding a brand-new name?** Register it in
+> `scripts/bootstrap-placeholders.mjs` (target → an existing image to derive
+> from) and run `npm run images:placeholders`. That writes a complete, valid
+> variant set immediately, so the new slot renders correctly before the real
+> photo exists rather than 404-ing its `srcSet`.

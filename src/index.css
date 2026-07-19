@@ -154,6 +154,18 @@
       bottom left;
   }
 
+  /* Carousel scroller (components/ui/DragCarousel.jsx). The row is still fully
+     scrollable by wheel, touch, keyboard and the arrow buttons — only the
+     scrollbar chrome is hidden, because a native bar under a paper-styled card
+     row reads as a rendering artefact. */
+  .no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   /* The band itself: a slightly deeper sheet laid over the page, with hairline
      highlights top and bottom so the layers read as stacked paper. */
   .paper-layer {

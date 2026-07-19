@@ -20,7 +20,8 @@
     "loading": "Memuat...",
     "seats": "kursi",
     "luggage": "bagasi",
-    "popular": "Populer"
+    "popular": "Populer",
+    "explore": "Jelajahi"
   },
   "hero": {
     "eyebrow": "Welcome to Bali",
@@ -129,7 +130,9 @@
   },
   "vehiclesPage": {
     "title": "Sewa Transport & Armada",
-    "subtitle": "Kendaraan nyaman, bersih, dan terawat dengan driver profesional."
+    "subtitle": "Kendaraan nyaman, bersih, dan terawat dengan driver profesional.",
+    "selectedTitle": "Dipilih: {{name}}",
+    "selectedHint": "Sekarang pilih tour yang ingin Anda ikuti — pilihan kendaraan Anda akan terbawa ke formulir pemesanan."
   },
   "galleryPage": {
     "title": "Galeri Foto",
@@ -145,10 +148,22 @@
     "valuesEyebrow": "Nilai Kami",
     "valuesTitle": "Mengapa Memilih Kami",
     "values": {
-      "trusted": { "title": "Terpercaya", "desc": "Ribuan wisatawan puas dengan layanan kami selama bertahun-tahun." },
-      "friendly": { "title": "Pelayanan Ramah", "desc": "Driver dan tim yang ramah, siap membantu kapan pun dibutuhkan." },
-      "flexible": { "title": "Fleksibel", "desc": "Itinerary dapat disesuaikan sepenuhnya dengan keinginan Anda." },
-      "quality": { "title": "Berkualitas", "desc": "Armada terawat dan destinasi pilihan untuk pengalaman terbaik." }
+      "trusted": {
+        "title": "Terpercaya",
+        "desc": "Ribuan wisatawan puas dengan layanan kami selama bertahun-tahun."
+      },
+      "friendly": {
+        "title": "Pelayanan Ramah",
+        "desc": "Driver dan tim yang ramah, siap membantu kapan pun dibutuhkan."
+      },
+      "flexible": {
+        "title": "Fleksibel",
+        "desc": "Itinerary dapat disesuaikan sepenuhnya dengan keinginan Anda."
+      },
+      "quality": {
+        "title": "Berkualitas",
+        "desc": "Armada terawat dan destinasi pilihan untuk pengalaman terbaik."
+      }
     }
   },
   "contact": {
@@ -180,5 +195,104 @@
   "whatsapp": {
     "greeting": "Halo! 👋 Ada yang bisa kami bantu untuk liburan Anda di Bali?",
     "start": "Mulai Chat"
+  },
+  "carousel": {
+    "previous": "Sebelumnya",
+    "next": "Berikutnya"
+  },
+  "gallery": {
+    "openLightbox": "Lihat ukuran penuh",
+    "close": "Tutup"
+  },
+  "topDestinations": {
+    "kicker": "Paling banyak dipesan musim ini",
+    "title": "Destinasi Teratas",
+    "lead": "Empat rute yang membuat tamu kami kembali lagi. Geser untuk melihat, lalu buka salah satunya dan susun hari Anda sendiri — durasi, kendaraan, dan aktivitas yang benar-benar Anda inginkan."
+  },
+  "destinationDetail": {
+    "about": "Tentang tour ini",
+    "placesTitle": "Tempat yang Dikunjungi",
+    "notFoundTitle": "Destinasi tidak ditemukan",
+    "notFoundText": "Destinasi yang Anda cari tidak tersedia atau telah dipindahkan.",
+    "backToList": "Kembali ke semua destinasi",
+    "enquiryTitle": "Rencanakan destinasi ini bersama kami",
+    "enquiryText": "{{name}} belum menjadi paket berharga tetap, tetapi kami mengaturnya sebagai private tour. Hubungi kami dan kami susun itinerary serta penawaran sesuai tanggal Anda.",
+    "enquiryMsg": "Halo Bali Arga Tour, saya ingin mengatur private tour ke {{name}}. Boleh dikirimkan itinerary dan penawaran harganya?"
+  },
+  "booking": {
+    "durationTitle": "Pilih durasi",
+    "durationHint": "Dihitung sejak penjemputan di hotel hingga pengantaran kembali. Harga per kendaraan, bukan per orang.",
+    "hours": "jam",
+    "perVehicle": "per kendaraan",
+    "perGuest": "per tamu",
+    "fromHours": "Mulai {{hours}} jam",
+    "vehicleTitle": "Pilih kendaraan",
+    "vehicleHint": "Nominal yang tertera adalah biaya upgrade di atas harga tour, dikenakan sekali per kendaraan.",
+    "upgradeLabel": "Upgrade tour",
+    "upgradePerVehicle": "upgrade, per kendaraan",
+    "noSurcharge": "Tanpa biaya tambahan",
+    "upToGuests": "Hingga {{count}} tamu",
+    "select": "Pilih",
+    "selected": "Dipilih",
+    "vehicleEnquiry": "Halo Bali Arga Tour, saya ingin bertanya tentang {{name}} untuk tour.",
+    "capacityWarning": "{{guests}} tamu tidak muat dalam {{count}} kendaraan jenis ini. Anda memerlukan sekitar {{needed}}.",
+    "activitiesTitle": "Tambah aktivitas",
+    "activitiesHint": "Opsional. Aktivitas berbayar dihitung per tamu, jadi setiap pilihan dikalikan {{count}} tamu Anda.",
+    "included": "Termasuk",
+    "contactForPrice": "Hubungi untuk Harga",
+    "formTitle": "Data Anda",
+    "formHint": "Data ini hanya kami gunakan untuk mengonfirmasi pemesanan melalui WhatsApp.",
+    "guests": "Jumlah tamu",
+    "vehicleCount": "Jumlah kendaraan",
+    "fullName": "Nama lengkap",
+    "fullNamePlaceholder": "contoh: Made Wirawan",
+    "whatsappNumber": "Nomor WhatsApp",
+    "whatsappPlaceholder": "contoh: +62 812 3456 7890",
+    "tourDate": "Tanggal tour",
+    "pickup": "Hotel / lokasi penjemputan",
+    "pickupPlaceholder": "contoh: The Kayon Resort, Ubud",
+    "additionalMessage": "Pesan tambahan",
+    "additionalPlaceholder": "Hal lain yang perlu kami tahu — kebutuhan makanan, kursi anak, jam penerbangan…",
+    "summaryTitle": "Ringkasan pemesanan",
+    "estimatedTotal": "Estimasi total",
+    "partialTotal": "Subtotal item berharga tetap",
+    "quoteOnRequestShort": "harga final perlu dikonfirmasi",
+    "bookOnWhatsapp": "Pesan via WhatsApp",
+    "missingFields": "Lengkapi {{fields}} untuk mengaktifkan pemesanan.",
+    "fieldNames": {
+      "name": "nama lengkap",
+      "phone": "nomor WhatsApp",
+      "date": "tanggal tour",
+      "pickup": "lokasi penjemputan"
+    },
+    "includesTitle": "Termasuk",
+    "excludesTitle": "Tidak Termasuk",
+    "termsTitle": "Syarat & Ketentuan",
+    "paymentTitle": "Kebijakan Pembayaran",
+    "paymentIntro": "Website ini tidak pernah memproses pembayaran. Pemesanan Anda dikonfirmasi langsung oleh tim kami melalui WhatsApp, dan barulah kami mengirimkan instruksi pembayaran.",
+    "paymentMethodsTitle": "Metode pembayaran resmi",
+    "paymentWarning": "QRIS, transfer bank, dan WISE adalah satu-satunya kanal pembayaran kami. Jika ada yang meminta Anda membayar dengan cara lain, itu bukan kami — silakan konfirmasi dulu ke nomor WhatsApp resmi kami.",
+    "wa": {
+      "greeting": "Halo Bali Arga Tour,",
+      "intro": "Saya ingin memesan tour.",
+      "destination": "Destinasi",
+      "duration": "Durasi",
+      "date": "Tanggal tour",
+      "pickup": "Lokasi penjemputan",
+      "guests": "Jumlah tamu",
+      "vehicleCount": "Jumlah kendaraan",
+      "vehicle": "Kendaraan",
+      "places": "Tempat yang dikunjungi",
+      "activities": "Aktivitas yang dipilih",
+      "breakdown": "Rincian harga",
+      "total": "Estimasi total",
+      "name": "Nama",
+      "phone": "Telepon/WhatsApp",
+      "note": "Pesan tambahan",
+      "none": "Tidak ada",
+      "guestsUnit": "tamu",
+      "vehiclesUnit": "kendaraan",
+      "disclaimer": "Saya memahami bahwa ketersediaan dan harga final harus dikonfirmasi oleh Bali Arga Tour."
+    }
   }
 }

@@ -28,4 +28,7 @@ export const destinationsService = {
   getAllSync: () => (USE_MOCK ? destinations : null),
   getFeaturedSync: () =>
     USE_MOCK ? destinations.filter((d) => d.featured) : null,
+  getBySlugSync: (slug) =>
+    USE_MOCK ? destinations.find((d) => d.slug === slug) ?? null : null,
+  getBookableSync: () => (USE_MOCK ? destinations.filter((d) => d.bookable) : null),
 };

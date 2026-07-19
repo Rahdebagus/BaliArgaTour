@@ -19,6 +19,7 @@ import EditorialHeading from './EditorialHeading';
 import SearchBar from './SearchBar';
 import PolaroidStory from './PolaroidStory';
 import JourneyGallery from './JourneyGallery';
+import TopDestinations from './TopDestinations';
 
 function Section({ children, className = '' }) {
   return (
@@ -55,6 +56,12 @@ export default function Home() {
     [],
     { initialData: destinationsService.getFeaturedSync() }
   );
+  // The carousel shows bookable tours only — every card links into a booking
+  // flow, so showcase destinations are filtered out here rather than in the
+  // component.
+  const { data: topTours } = useFetch(() => destinationsService.getAll(), [], {
+    initialData: destinationsService.getAllSync(),
+  });
   const { data: vehicles, loading: vehLoading } = useFetch(
     () => vehiclesService.getPopular(),
     [],
@@ -138,7 +145,12 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* 01 — Curated packages */}
+      {/* 01 — Top Destinations: swipeable row of bookable tours */}
+      <TopDestinations
+        destinations={(topTours ?? []).filter((d) => d.bookable)}
+      />
+
+      {/* 02 — Curated packages */}
       <Section className="overflow-hidden pt-0">
         {/* Penjor swaying in the right margin */}
         <Decor
@@ -150,7 +162,7 @@ export default function Home() {
         />
      
         <EditorialHeading
-          index="01"
+          index="02"
           kicker={t('edHome.packagesKicker')}
           title={t('home.packagesTitle')}
           lead={t('home.packagesSubtitle')}
@@ -175,11 +187,11 @@ export default function Home() {
         <SeeAll to="/packages" label={t('home.seeAllPackages')} />
       </Section>
 
-      {/* 02 — Travel memories: polaroids pinned on a light-blue board */}
+      {/* 03 — Travel memories: polaroids pinned on a light-blue board */}
       <section className="paper-deckle-t overflow-hidden bg-primary-50 py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
-            index="02"
+            index="03"
             kicker={t('story.kicker')}
             title={t('story.title')}
             lead={t('story.lead')}
@@ -188,7 +200,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 03 — Destinations: one large + smaller editorial grid */}
+      {/* 04 — Destinations: one large + smaller editorial grid */}
       <Section className="overflow-hidden">
         {/* "Bali" lettering sitting behind the section number/heading */}
         <Decor
@@ -199,7 +211,7 @@ export default function Home() {
           className="right-0 top-10"
         />
         <EditorialHeading
-          index="03"
+          index="04"
           kicker={t('edHome.destinationsKicker')}
           title={t('home.destinationsTitle')}
           lead={t('home.destinationsSubtitle')}
@@ -224,11 +236,11 @@ export default function Home() {
         <SeeAll to="/destinations" label={t('home.seeAllDestinations')} />
       </Section>
 
-      {/* 04 — Our journey with guests: asymmetric collage on dark band */}
+      {/* 05 — Our journey with guests: asymmetric collage on dark band */}
       <section className="paper-deckle-t bg-primary-900 py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
-            index="04"
+            index="05"
             kicker={t('journey.kicker')}
             title={t('journey.title')}
             lead={t('journey.lead')}
@@ -238,7 +250,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 05 — Testimonials */}
+      {/* 06 — Testimonials */}
       <Section className="overflow-hidden">
         {/* Canang sari offering tucked into the bottom corner */}
         <Decor
@@ -249,7 +261,7 @@ export default function Home() {
           className="-bottom-11 -left-12"
         />
         <EditorialHeading
-          index="05"
+          index="06"
           kicker={t('testimonials.kicker')}
           title={t('testimonials.title')}
         />
@@ -266,10 +278,10 @@ export default function Home() {
         </motion.div>
       </Section>
 
-      {/* 06 — Fleet */}
+      {/* 07 — Fleet */}
       <Section className="pt-0">
         <EditorialHeading
-          index="06"
+          index="07"
           kicker={t('edHome.vehiclesKicker')}
           title={t('home.vehiclesTitle')}
           lead={t('home.vehiclesSubtitle')}
@@ -292,7 +304,7 @@ export default function Home() {
         <SeeAll to="/vehicles" label={t('home.seeAllVehicles')} />
       </Section>
 
-      {/* 07 — FAQ */}
+      {/* 08 — FAQ */}
       <Section className="overflow-hidden pt-0">
         {/* Birds drifting above the FAQ list */}
         <Decor
@@ -303,7 +315,7 @@ export default function Home() {
           className="right-6 top-6"
         />
         <EditorialHeading
-          index="07"
+          index="08"
           kicker={t('edHome.faqKicker')}
           title={t('home.faqTitle')}
         />

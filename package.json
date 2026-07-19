@@ -8,6 +8,7 @@
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
+    "images:placeholders": "node scripts/bootstrap-placeholders.mjs",
     "clean": "node scripts/clean-dist.mjs",
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "node scripts/clean-dist.mjs && vite-react-ssg build",

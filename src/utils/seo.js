@@ -77,6 +77,48 @@ export const faqSchema = (faqs = [], lang) => ({
   })),
 });
 
+/**
+ * Destination -> TouristTrip schema.
+ *
+ * Separate from tourSchema because the records differ: a destination has `name`
+ * (not `title`), no review count, and its price is the cheapest duration option
+ * in USD rather than a single package price. Bookable destinations advertise a
+ * lowPrice offer; showcase destinations carry no offer at all, since quoting a
+ * price for something we do not sell would be a false listing.
+ */
+export const destinationSchema = (destination, lang) => {
+  const prices = (destination.durations ?? [])
+    .map((d) => d.price)
+    .filter((p) => typeof p === 'number');
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: destination.name,
+    description: localize(destination.shortDescription, lang),
+    image: absoluteUrl(destination.image),
+    url: absoluteUrl(`/destinations/${destination.slug}`),
+    provider: { '@type': 'TravelAgency', name: SITE.name },
+    touristType: destination.category,
+    ...(prices.length && {
+      offers: {
+        '@type': 'AggregateOffer',
+        lowPrice: Math.min(...prices),
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        url: absoluteUrl(`/destinations/${destination.slug}`),
+      },
+    }),
+    ...(destination.rating && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: destination.rating,
+        ratingCount: 1,
+      },
+    }),
+  };
+};
+
 /** Tour package -> Product/Trip schema with offer + rating. */
 export const tourSchema = (pkg, lang) => ({
   '@context': 'https://schema.org',

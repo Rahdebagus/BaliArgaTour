@@ -40,16 +40,27 @@ const AVIF = { quality: 70 }; // 65–75 range
 const WEBP = { quality: 80 }; // 75–82 range
 const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 
-function listSources() {
-  if (!existsSync(SRC)) return [];
-  return readdirSync(SRC)
-    .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
-    .filter((f) => statSync(resolve(SRC, f)).isFile());
+// Walks source-images/ recursively. A subdirectory is mirrored into
+// public/images/, so source-images/vehicles/toyota-zenix-2024.jpg emits
+// public/images/vehicles/toyota-zenix-2024-{480,…}.{avif,webp} — which is the
+// path shape the data files and OptimizedImage expect.
+function listSources(dir = SRC, prefix = '') {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).flatMap((entry) => {
+    const full = resolve(dir, entry);
+    const rel = prefix ? `${prefix}/${entry}` : entry;
+    if (statSync(full).isDirectory()) return listSources(full, rel);
+    return SOURCE_EXT.has(extname(entry).toLowerCase()) ? [rel] : [];
+  });
 }
 
 async function processOne(file) {
-  const base = basename(file, extname(file));
+  // Keep any subdirectory in the output name so the mirror is preserved.
+  const dir = dirname(file);
+  const stem = basename(file, extname(file));
+  const base = dir === '.' ? stem : `${dir}/${stem}`;
   const input = resolve(SRC, file);
+  mkdirSync(resolve(OUT, dirname(base)), { recursive: true });
   const meta = await sharp(input).metadata();
   const origW = meta.width || MAIN_WIDTH;
 

@@ -20,7 +20,8 @@
     "loading": "Loading...",
     "seats": "seats",
     "luggage": "luggage",
-    "popular": "Popular"
+    "popular": "Popular",
+    "explore": "Explore"
   },
   "hero": {
     "eyebrow": "Welcome to Bali",
@@ -129,7 +130,9 @@
   },
   "vehiclesPage": {
     "title": "Transport & Fleet Rental",
-    "subtitle": "Comfortable, clean, well-maintained vehicles with professional drivers."
+    "subtitle": "Comfortable, clean, well-maintained vehicles with professional drivers.",
+    "selectedTitle": "Selected: {{name}}",
+    "selectedHint": "Now choose which tour to use it on — your vehicle choice carries over to the booking form."
   },
   "galleryPage": {
     "title": "Photo Gallery",
@@ -145,10 +148,22 @@
     "valuesEyebrow": "Our Values",
     "valuesTitle": "Why Choose Us",
     "values": {
-      "trusted": { "title": "Trusted", "desc": "Thousands of travelers satisfied with our service over the years." },
-      "friendly": { "title": "Friendly Service", "desc": "Friendly drivers and team, ready to help whenever you need." },
-      "flexible": { "title": "Flexible", "desc": "Itineraries can be fully tailored to your wishes." },
-      "quality": { "title": "Quality", "desc": "Well-kept fleet and handpicked destinations for the best experience." }
+      "trusted": {
+        "title": "Trusted",
+        "desc": "Thousands of travelers satisfied with our service over the years."
+      },
+      "friendly": {
+        "title": "Friendly Service",
+        "desc": "Friendly drivers and team, ready to help whenever you need."
+      },
+      "flexible": {
+        "title": "Flexible",
+        "desc": "Itineraries can be fully tailored to your wishes."
+      },
+      "quality": {
+        "title": "Quality",
+        "desc": "Well-kept fleet and handpicked destinations for the best experience."
+      }
     }
   },
   "contact": {
@@ -180,5 +195,104 @@
   "whatsapp": {
     "greeting": "Hi! 👋 How can we help with your holiday in Bali?",
     "start": "Start Chat"
+  },
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "gallery": {
+    "openLightbox": "View full size",
+    "close": "Close"
+  },
+  "topDestinations": {
+    "kicker": "Most booked this season",
+    "title": "Top Destinations",
+    "lead": "Four routes our guests keep coming back for. Swipe through, then open one to build your own day — duration, vehicle, and the activities you actually want."
+  },
+  "destinationDetail": {
+    "about": "About this tour",
+    "placesTitle": "Places to Visit",
+    "notFoundTitle": "Destination not found",
+    "notFoundText": "The destination you are looking for is unavailable or has been moved.",
+    "backToList": "Back to all destinations",
+    "enquiryTitle": "Plan this destination with us",
+    "enquiryText": "{{name}} is not yet a fixed-price package, but we arrange it as a private tour. Message us and we will build the itinerary and quote around your dates.",
+    "enquiryMsg": "Hello Bali Arga Tour, I would like to arrange a private tour to {{name}}. Could you send me an itinerary and a quote?"
+  },
+  "booking": {
+    "durationTitle": "Choose your duration",
+    "durationHint": "Counted from hotel pick-up to drop-off. Priced per vehicle, not per person.",
+    "hours": "hours",
+    "perVehicle": "per vehicle",
+    "perGuest": "per guest",
+    "fromHours": "From {{hours}} hours",
+    "vehicleTitle": "Choose your vehicle",
+    "vehicleHint": "The amount shown is the upgrade on top of the tour price, charged once per vehicle.",
+    "upgradeLabel": "Tour upgrade",
+    "upgradePerVehicle": "upgrade, per vehicle",
+    "noSurcharge": "No surcharge",
+    "upToGuests": "Up to {{count}} guests",
+    "select": "Select",
+    "selected": "Selected",
+    "vehicleEnquiry": "Hello Bali Arga Tour, I would like to ask about the {{name}} for a tour.",
+    "capacityWarning": "{{guests}} guests will not fit in {{count}} vehicle(s) of this type. You need about {{needed}}.",
+    "activitiesTitle": "Add activities",
+    "activitiesHint": "Optional. Paid activities are charged per guest, so each one is multiplied by your {{count}} guests.",
+    "included": "Included",
+    "contactForPrice": "Contact for Price",
+    "formTitle": "Your details",
+    "formHint": "We only use these to confirm your booking over WhatsApp.",
+    "guests": "Number of guests",
+    "vehicleCount": "Number of vehicles",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "e.g. Made Wirawan",
+    "whatsappNumber": "WhatsApp number",
+    "whatsappPlaceholder": "e.g. +61 400 000 000",
+    "tourDate": "Tour date",
+    "pickup": "Hotel / pick-up location",
+    "pickupPlaceholder": "e.g. The Kayon Resort, Ubud",
+    "additionalMessage": "Additional message",
+    "additionalPlaceholder": "Anything else we should know — dietary needs, child seats, flight times…",
+    "summaryTitle": "Booking summary",
+    "estimatedTotal": "Estimated total",
+    "partialTotal": "Priced items subtotal",
+    "quoteOnRequestShort": "final price requires confirmation",
+    "bookOnWhatsapp": "Book on WhatsApp",
+    "missingFields": "Complete {{fields}} to enable booking.",
+    "fieldNames": {
+      "name": "full name",
+      "phone": "WhatsApp number",
+      "date": "tour date",
+      "pickup": "pick-up location"
+    },
+    "includesTitle": "Includes",
+    "excludesTitle": "Excludes",
+    "termsTitle": "Terms & Conditions",
+    "paymentTitle": "Payment Policy",
+    "paymentIntro": "This website never processes payment. Your booking is confirmed by a real person over WhatsApp, and only then do we send payment instructions.",
+    "paymentMethodsTitle": "Official payment methods",
+    "paymentWarning": "QRIS, bank transfer and WISE are our only payment channels. If anyone asks you to pay any other way, it is not us — please check with us on our official WhatsApp number first.",
+    "wa": {
+      "greeting": "Hello Bali Arga Tour,",
+      "intro": "I would like to book a tour.",
+      "destination": "Destination",
+      "duration": "Duration",
+      "date": "Tour date",
+      "pickup": "Pick-up location",
+      "guests": "Number of guests",
+      "vehicleCount": "Number of vehicles",
+      "vehicle": "Vehicle",
+      "places": "Places to visit",
+      "activities": "Selected activities",
+      "breakdown": "Price breakdown",
+      "total": "Estimated total",
+      "name": "Name",
+      "phone": "Phone/WhatsApp",
+      "note": "Additional message",
+      "none": "None",
+      "guestsUnit": "guest(s)",
+      "vehiclesUnit": "vehicle(s)",
+      "disclaimer": "I understand that the final availability and price must be confirmed by Bali Arga Tour."
+    }
   }
 }

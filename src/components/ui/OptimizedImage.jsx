@@ -10,7 +10,10 @@
 // keeps participating in the parent's layout exactly as a bare <img> would —
 // existing sizing/object-fit classes on the image are unaffected.
 
-const LOCAL = /^\/images\/([a-zA-Z0-9-]+)\.webp$/;
+// Subdirectories are allowed (e.g. /images/vehicles/toyota-zenix-2024.webp) so
+// large image families can be foldered; the variant suffix is always appended to
+// the full path, matching what scripts/optimize-images.mjs emits.
+const LOCAL = /^\/images\/((?:[a-zA-Z0-9-]+\/)*[a-zA-Z0-9-]+)\.webp$/;
 const WIDTHS = [480, 768, 1200, 1600];
 
 function localVariants(src) {
