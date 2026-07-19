@@ -1,9 +1,12 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Breadcrumb from '@/components/common/Breadcrumb';
+import OptimizedImage from './OptimizedImage';
 import { staggerContainer, fadeInUp } from '@/utils/animations';
 
 /**
- * Inner-page banner: gradient/overlay background, title, subtitle, breadcrumb.
+ * Inner-page banner: gradient/overlay background with scroll parallax, title,
+ * subtitle, breadcrumb (docs/09_ANIMATION.md).
  * @param {Array} breadcrumb [{ label, to }]
  */
 export default function PageHeader({
@@ -12,12 +15,29 @@ export default function PageHeader({
   breadcrumb = [],
   bgImage = 'https://picsum.photos/seed/page-header/1920/700',
 }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
   return (
-    <section className="relative flex min-h-[42vh] items-center overflow-hidden pt-20">
-      <div className="absolute inset-0">
-        <img src={bgImage} alt="" aria-hidden className="h-full w-full object-cover" />
+    <section
+      ref={ref}
+      className="relative flex min-h-[42vh] items-center overflow-hidden pt-20"
+    >
+      <motion.div style={{ y: bgY }} className="absolute -inset-y-[16%] inset-x-0">
+        <OptimizedImage
+          src={bgImage}
+          alt=""
+          aria-hidden
+          priority
+          sizes="100vw"
+          className="h-full w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-900/60" />
-      </div>
+      </motion.div>
 
       <motion.div
         variants={staggerContainer(0.12)}

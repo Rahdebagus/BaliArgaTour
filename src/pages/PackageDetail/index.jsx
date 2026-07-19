@@ -12,7 +12,7 @@ import {
 import { FaWhatsapp } from 'react-icons/fa';
 import { PageHeader, Button, Loader, CTA } from '@/components/ui';
 import { useFetch } from '@/hooks';
-import { packagesService } from '@/services';
+import { packagesService } from '@/features/packages';
 import { formatCurrency } from '@/utils/format';
 import { whatsappLink } from '@/data/company';
 import { Seo } from '@/components/common';

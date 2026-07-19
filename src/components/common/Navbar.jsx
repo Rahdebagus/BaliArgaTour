@@ -120,8 +120,8 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               ))}
-              <li className="mt-2 px-4">
-                <LanguageSwitcher className="inline-block" />
+              <li className="mt-2 px-2">
+                <LanguageSwitcher variant="inline" />
               </li>
               <li className="mt-2 px-2">
                 <Button

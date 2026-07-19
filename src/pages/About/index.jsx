@@ -6,6 +6,7 @@ import {
   SectionHeading,
   Counter,
   CTA,
+  OptimizedImage,
 } from '@/components/ui';
 import { company } from '@/data/company';
 import { Seo } from '@/components/common';
@@ -57,10 +58,12 @@ export default function About() {
           whileInView="show"
           viewport={viewport}
         >
-          <img
+          <OptimizedImage
             src="https://picsum.photos/seed/about-story/800/600"
             alt="Tim Arga Bali Tour"
-            loading="lazy"
+            width={800}
+            height={600}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="rounded-3xl shadow-glass-lg"
           />
         </motion.div>

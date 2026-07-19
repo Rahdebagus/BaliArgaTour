@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
+import OptimizedImage from './OptimizedImage';
 import { staggerContainer, scaleIn, viewport } from '@/utils/animations';
 import { useLoc } from '@/i18n/useLoc';
+
+const GALLERY_SIZES = '(min-width: 1024px) 33vw, 50vw';
 
 const SPAN = {
   tall: 'row-span-2',
@@ -34,10 +37,10 @@ export default function Gallery({ items = [] }) {
             onClick={() => setActive(item)}
             className={`group relative overflow-hidden rounded-2xl shadow-glass ${SPAN[item.span] || ''}`}
           >
-            <img
+            <OptimizedImage
               src={item.src}
               alt={loc(item.alt)}
-              loading="lazy"
+              sizes={GALLERY_SIZES}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-primary-900/0 transition-colors duration-300 group-hover:bg-primary-900/30" />

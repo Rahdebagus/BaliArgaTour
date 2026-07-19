@@ -2,11 +2,14 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiUsers, FiBriefcase, FiCheck } from 'react-icons/fi';
 import { TbManualGearbox, TbAirConditioning } from 'react-icons/tb';
-import Card from './Card';
-import Button from './Button';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { formatCurrency } from '@/utils/format';
 import { whatsappLink } from '@/data/company';
 import { useLoc } from '@/i18n/useLoc';
+
+const CARD_SIZES = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw';
 
 function VehicleCard({ vehicle }) {
   const { t } = useTranslation();
@@ -16,10 +19,10 @@ function VehicleCard({ vehicle }) {
   return (
     <Card>
       <div className="relative h-48 overflow-hidden bg-primary-50">
-        <img
+        <OptimizedImage
           src={vehicle.image}
           alt={vehicle.name}
-          loading="lazy"
+          sizes={CARD_SIZES}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         {vehicle.popular && (

@@ -1,5 +1,5 @@
-import { packages } from '@/data/packages';
-import { mock, request, ApiError, USE_MOCK } from './http';
+import { packages } from './packages.data';
+import { mock, request, ApiError, USE_MOCK } from '@/services/http';
 
 export const packagesService = {
   getAll() {

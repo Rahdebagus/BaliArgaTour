@@ -8,12 +8,26 @@ import { toLang } from '@/i18n/useLoc';
 
 const flagSrc = (flag) => `https://flagcdn.com/w40/${flag}.png`;
 
+const Flag = ({ flag }) => (
+  <img
+    src={flagSrc(flag)}
+    alt=""
+    width={20}
+    height={15}
+    className="h-[15px] w-5 shrink-0 rounded-[2px] object-cover"
+  />
+);
+
 /**
  * Custom flag language switcher (i18n Phase 2 — docs/08_MULTI_LANGUAGE.md).
  * Powered by react-i18next: switching updates translations instantly (no reload)
  * and persists the choice to localStorage.
+ *
+ * @param {'dropdown'|'inline'} variant - `dropdown` for the desktop navbar,
+ *   `inline` (a segmented control) for the mobile menu where an absolute
+ *   dropdown would be clipped by the menu's overflow.
  */
-export default function LanguageSwitcher({ className = '' }) {
+export default function LanguageSwitcher({ variant = 'dropdown', className = '' }) {
   const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -34,6 +48,34 @@ export default function LanguageSwitcher({ className = '' }) {
     setOpen(false);
   };
 
+  // Segmented control — no absolute positioning, safe inside overflow-hidden.
+  if (variant === 'inline') {
+    return (
+      <div className={`flex gap-2 ${className}`}>
+        {LANGUAGES.map((lang) => {
+          const isActive = lang.code === current;
+          return (
+            <button
+              key={lang.code}
+              type="button"
+              onClick={() => choose(lang.code)}
+              aria-pressed={isActive}
+              className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-colors ${
+                isActive
+                  ? 'border-primary bg-primary-50 text-primary'
+                  : 'border-primary-100 bg-white text-primary-800 hover:bg-primary-50'
+              }`}
+            >
+              <Flag flag={lang.flag} />
+              <span>{lang.label}</span>
+              {isActive && <FiCheck className="text-primary" />}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div ref={ref} className={`relative ${className}`}>
       <button
@@ -43,13 +85,7 @@ export default function LanguageSwitcher({ className = '' }) {
         aria-expanded={open}
         className="flex items-center gap-2 rounded-xl border border-primary-100 bg-white/80 px-3 py-1.5 text-sm font-medium text-primary-800 shadow-sm transition-colors hover:bg-white"
       >
-        <img
-          src={flagSrc(active.flag)}
-          alt=""
-          width={20}
-          height={15}
-          className="h-[15px] w-5 rounded-[2px] object-cover"
-        />
+        <Flag flag={active.flag} />
         <span className="hidden sm:inline">{active.label}</span>
         <FiChevronDown
           className={`transition-transform ${open ? 'rotate-180' : ''}`}
@@ -76,13 +112,7 @@ export default function LanguageSwitcher({ className = '' }) {
                       : 'text-primary-800'
                   }`}
                 >
-                  <img
-                    src={flagSrc(lang.flag)}
-                    alt=""
-                    width={20}
-                    height={15}
-                    className="h-[15px] w-5 rounded-[2px] object-cover"
-                  />
+                  <Flag flag={lang.flag} />
                   <span className="flex-1">{lang.label}</span>
                   {lang.code === current && <FiCheck className="text-primary" />}
                 </button>

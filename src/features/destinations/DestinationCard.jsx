@@ -1,17 +1,20 @@
 import { memo } from 'react';
 import { FiMapPin, FiStar } from 'react-icons/fi';
-import Card from './Card';
+import Card from '@/components/ui/Card';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { useLoc } from '@/i18n/useLoc';
+
+const CARD_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
 
 function DestinationCard({ destination }) {
   const loc = useLoc();
   return (
     <Card className="relative">
       <div className="relative h-72 overflow-hidden">
-        <img
+        <OptimizedImage
           src={destination.image}
           alt={destination.name}
-          loading="lazy"
+          sizes={CARD_SIZES}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         {/* gradient overlay for readable text */}

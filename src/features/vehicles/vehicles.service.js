@@ -1,5 +1,5 @@
-import { vehicles } from '@/data/vehicles';
-import { mock, request, ApiError, USE_MOCK } from './http';
+import { vehicles } from './vehicles.data';
+import { mock, request, ApiError, USE_MOCK } from '@/services/http';
 
 export const vehiclesService = {
   getAll() {

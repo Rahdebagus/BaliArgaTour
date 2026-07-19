@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { PageHeader, DestinationCard, SkeletonGrid, CTA } from '@/components/ui';
+import { PageHeader, SkeletonGrid, CTA } from '@/components/ui';
 import { useFetch } from '@/hooks';
-import { destinationsService } from '@/services';
+import { destinationsService, DestinationCard } from '@/features/destinations';
 import { Seo } from '@/components/common';
 import { breadcrumbSchema } from '@/utils/seo';
 import { staggerContainer, viewport } from '@/utils/animations';

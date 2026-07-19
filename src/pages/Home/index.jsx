@@ -9,19 +9,14 @@ import {
   CTA,
   Counter,
   SectionHeading,
-  PackageCard,
-  DestinationCard,
-  VehicleCard,
   SkeletonGrid,
 } from '@/components/ui';
 import { useFetch } from '@/hooks';
-import {
-  packagesService,
-  destinationsService,
-  vehiclesService,
-  galleryService,
-  faqService,
-} from '@/services';
+import { packagesService, PackageCard } from '@/features/packages';
+import { destinationsService, DestinationCard } from '@/features/destinations';
+import { vehiclesService, VehicleCard } from '@/features/vehicles';
+import { galleryService } from '@/features/gallery';
+import { faqService } from '@/features/faq';
 import { Seo } from '@/components/common';
 import { company } from '@/data/company';
 import { faqSchema } from '@/utils/seo';

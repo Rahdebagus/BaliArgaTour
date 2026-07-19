@@ -2,9 +2,12 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiClock, FiUsers, FiStar, FiArrowRight } from 'react-icons/fi';
-import Card from './Card';
+import Card from '@/components/ui/Card';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { formatCurrency } from '@/utils/format';
 import { useLoc } from '@/i18n/useLoc';
+
+const CARD_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
 
 function PackageCard({ pkg }) {
   const { t } = useTranslation();
@@ -13,10 +16,10 @@ function PackageCard({ pkg }) {
     <Card>
       <Link to={`/packages/${pkg.slug}`} className="block">
         <div className="relative h-52 overflow-hidden">
-          <img
+          <OptimizedImage
             src={pkg.image}
             alt={pkg.title}
-            loading="lazy"
+            sizes={CARD_SIZES}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">

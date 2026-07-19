@@ -1,14 +1,16 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiArrowRight, FiPlay } from 'react-icons/fi';
 import Button from './Button';
+import OptimizedImage from './OptimizedImage';
 import { staggerContainer, fadeInUp } from '@/utils/animations';
 import { company } from '@/data/company';
 import { useLoc } from '@/i18n/useLoc';
 
 /**
- * Homepage hero with gradient background, staggered reveal and floating
- * glass accents (docs/04, docs/09). Content overridable via props.
+ * Homepage hero with gradient background, scroll-linked parallax and staggered
+ * reveal (docs/04, docs/09). Content overridable via props.
  */
 export default function Hero({
   title = company.name,
@@ -19,22 +21,37 @@ export default function Hero({
   const eyebrow = t('hero.eyebrow');
   const highlight = t('hero.highlight');
   const subtitle = loc(company.description);
+
+  // Scroll parallax: background drifts down slower than scroll, content lifts
+  // up and fades — real depth, not a loop (docs/09_ANIMATION.md — parallax).
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '28%']);
+  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-18%']);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden">
-      {/* Background image + gradient overlay */}
-      <div className="absolute inset-0">
-        <img
+    <section
+      ref={ref}
+      className="relative flex min-h-[92vh] items-center overflow-hidden"
+    >
+      {/* Parallax background image + gradient overlay */}
+      <motion.div style={{ y: bgY }} className="absolute -inset-y-[14%] inset-x-0">
+        <OptimizedImage
           src={bgImage}
           alt=""
           aria-hidden
-          fetchpriority="high"
-          decoding="async"
+          priority
+          sizes="100vw"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-900/70 to-primary/40" />
-      </div>
+      </motion.div>
 
-      {/* Floating glass accents (parallax feel) */}
+      {/* Floating glass accents */}
       <motion.div
         aria-hidden
         className="absolute -right-10 top-24 h-40 w-40 rounded-full bg-secondary/30 blur-3xl"
@@ -52,6 +69,7 @@ export default function Hero({
         variants={staggerContainer(0.15)}
         initial="hidden"
         animate="show"
+        style={{ y: contentY, opacity: contentOpacity }}
         className="container-page relative z-10 text-white"
       >
         <motion.span

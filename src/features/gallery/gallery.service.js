@@ -1,5 +1,5 @@
-import { gallery, galleryCategories } from '@/data/gallery';
-import { mock, request, USE_MOCK } from './http';
+import { gallery, galleryCategories } from './gallery.data';
+import { mock, request, USE_MOCK } from '@/services/http';
 
 export const galleryService = {
   getAll() {

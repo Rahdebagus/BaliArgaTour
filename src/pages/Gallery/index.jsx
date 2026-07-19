@@ -2,8 +2,7 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageHeader, Gallery as GalleryGrid, Loader } from '@/components/ui';
 import { useFetch } from '@/hooks';
-import { galleryService } from '@/services';
-import { galleryCategories } from '@/data/gallery';
+import { galleryService, galleryCategories } from '@/features/gallery';
 import { Seo } from '@/components/common';
 import { breadcrumbSchema } from '@/utils/seo';
 

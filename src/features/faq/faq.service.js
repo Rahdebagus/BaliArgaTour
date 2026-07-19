@@ -1,5 +1,5 @@
-import { faqs } from '@/data/faq';
-import { mock, request, USE_MOCK } from './http';
+import { faqs } from './faq.data';
+import { mock, request, USE_MOCK } from '@/services/http';
 
 export const faqService = {
   getAll() {

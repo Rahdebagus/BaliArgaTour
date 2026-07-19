@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { PageHeader, PackageCard, SkeletonGrid, CTA } from '@/components/ui';
+import { PageHeader, SkeletonGrid, CTA } from '@/components/ui';
 import { useFetch } from '@/hooks';
-import { packagesService } from '@/services';
+import { packagesService, PackageCard } from '@/features/packages';
 import { Seo } from '@/components/common';
 import { breadcrumbSchema } from '@/utils/seo';
 import { staggerContainer } from '@/utils/animations';

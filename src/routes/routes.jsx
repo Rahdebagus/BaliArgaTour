@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import { packages } from '@/data/packages';
+import { packages } from '@/features/packages';
 
 // Route records consumed by vite-react-ssg (SSG) and react-router (runtime).
 // Lazy imports = per-route code-splitting; getStaticPaths enumerates the

@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 import { company } from '../src/data/company.js';
-import { packages } from '../src/data/packages.js';
+import { packages } from '../src/features/packages/packages.data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BASE = company.siteUrl.replace(/\/$/, '');

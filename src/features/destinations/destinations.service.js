@@ -1,5 +1,5 @@
-import { destinations } from '@/data/destinations';
-import { mock, request, ApiError, USE_MOCK } from './http';
+import { destinations } from './destinations.data';
+import { mock, request, ApiError, USE_MOCK } from '@/services/http';
 
 export const destinationsService = {
   getAll() {
