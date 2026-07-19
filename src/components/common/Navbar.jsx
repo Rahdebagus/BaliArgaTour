@@ -32,11 +32,7 @@ export default function Navbar() {
 
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors ${
-      isActive
-        ? 'text-primary'
-        : scrolled
-          ? 'text-primary-800 hover:text-primary'
-          : 'text-white/90 hover:text-white'
+      isActive ? 'text-primary' : 'text-primary-900/80 hover:text-primary'
     }`;
 
   return (
@@ -44,8 +40,8 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-3 shadow-glass' : 'bg-transparent py-5'
+      className={`glass fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'py-3 shadow-glass-lg' : 'py-4'
       }`}
     >
       <nav className="container-page flex items-center justify-between">
@@ -53,11 +49,7 @@ export default function Navbar() {
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-primary font-display text-lg font-extrabold text-white">
             A
           </span>
-          <span
-            className={`font-display text-lg font-extrabold ${
-              scrolled ? 'text-primary-900' : 'text-white'
-            }`}
-          >
+          <span className="font-display text-lg font-extrabold text-primary-900">
             {company.name}
           </span>
         </Link>
@@ -84,9 +76,7 @@ export default function Navbar() {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
-          className={`rounded-lg p-2 lg:hidden ${
-            scrolled ? 'text-primary-900' : 'text-white'
-          }`}
+          className="rounded-lg p-2 text-primary-900 lg:hidden"
         >
           {open ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>

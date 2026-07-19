@@ -26,7 +26,7 @@ function VehicleCard({ vehicle }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         {vehicle.popular && (
-          <span className="absolute left-4 top-4 rounded-full bg-gradient-accent px-3 py-1 text-xs font-bold text-primary-900">
+          <span className="absolute left-4 top-4 rounded-full bg-gradient-accent px-3 py-1 text-xs font-bold text-white">
             {t('common.popular')}
           </span>
         )}

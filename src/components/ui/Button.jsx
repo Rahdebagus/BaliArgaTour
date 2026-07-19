@@ -5,7 +5,7 @@ const VARIANTS = {
   primary:
     'bg-gradient-primary text-white shadow-glass hover:shadow-glass-lg',
   secondary:
-    'bg-gradient-accent text-primary-900 shadow-glass hover:shadow-glass-lg',
+    'bg-gradient-accent text-white shadow-glass hover:shadow-glass-lg',
   outline:
     'border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white',
   ghost: 'bg-white/60 backdrop-blur-glass text-primary hover:bg-white',

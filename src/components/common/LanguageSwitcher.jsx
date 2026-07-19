@@ -81,12 +81,12 @@ export default function LanguageSwitcher({ variant = 'dropdown', className = '' 
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        aria-label="Language"
         aria-expanded={open}
         className="flex items-center gap-2 rounded-xl border border-primary-100 bg-white/80 px-3 py-1.5 text-sm font-medium text-primary-800 shadow-sm transition-colors hover:bg-white"
       >
         <Flag flag={active.flag} />
-        <span className="hidden sm:inline">{active.label}</span>
+        {/* sr-only below sm keeps the accessible name matching the visible label */}
+        <span className="sr-only sm:not-sr-only">{active.label}</span>
         <FiChevronDown
           className={`transition-transform ${open ? 'rotate-180' : ''}`}
         />

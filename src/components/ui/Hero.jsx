@@ -1,104 +1,114 @@
 import { useRef } from 'react';
 import { m as motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiArrowRight, FiPlay } from 'react-icons/fi';
+import { FiArrowRight } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Head } from 'vite-react-ssg';
 import Button from './Button';
 import OptimizedImage, { preloadProps } from './OptimizedImage';
-import { company } from '@/data/company';
+import { company, whatsappLink } from '@/data/company';
 import { useLoc } from '@/i18n/useLoc';
 
 /**
- * Homepage hero with gradient background, scroll-linked parallax and staggered
- * reveal (docs/04, docs/09). Content overridable via props.
+ * Editorial split hero (NASA-inspired): huge condensed typography on white
+ * left, large rounded imagery over soft blue abstract shapes right.
+ * Entrance uses CSS animation so the LCP headline paints with the HTML
+ * (docs/09, docs/10); framer drives only the subtle scroll drift.
  */
 export default function Hero({
-  title = company.name,
   bgImage = '/images/hero-bali.webp',
 }) {
   const { t } = useTranslation();
   const loc = useLoc();
-  const eyebrow = t('hero.eyebrow');
-  const highlight = t('hero.highlight');
   const subtitle = loc(company.description);
 
-  // Scroll parallax: background drifts down slower than scroll, content lifts
-  // up and fades — real depth, not a loop (docs/09_ANIMATION.md — parallax).
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '28%']);
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-18%']);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
+  const shapeY = useTransform(scrollYProgress, [0, 1], ['0%', '-14%']);
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[92vh] items-center overflow-hidden"
+      className="relative overflow-hidden bg-white pb-24 pt-32 lg:pb-32 lg:pt-40"
     >
-      {/* Preload the LCP image before the JS bundle executes */}
+      {/* Preload the hero visual before the JS bundle executes */}
       <Head>
-        <link rel="preload" as="image" fetchpriority="high" {...preloadProps(bgImage)} />
+        <link rel="preload" as="image" fetchpriority="high" {...preloadProps(bgImage, '(min-width: 1024px) 44vw, 92vw')} />
       </Head>
-      {/* Parallax background image + gradient overlay */}
-      <motion.div style={{ y: bgY }} className="absolute -inset-y-[14%] inset-x-0">
-        <OptimizedImage
-          src={bgImage}
-          alt=""
-          aria-hidden
-          priority
-          sizes="100vw"
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-900/70 to-primary/40" />
-      </motion.div>
 
-      {/* Floating glass accents */}
-      <motion.div
-        aria-hidden
-        className="absolute -right-10 top-24 h-40 w-40 rounded-full bg-secondary/30 blur-3xl"
-        animate={{ y: [0, 24, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
-      />
-      <motion.div
-        aria-hidden
-        className="absolute bottom-16 left-10 h-52 w-52 rounded-full bg-primary-300/30 blur-3xl"
-        animate={{ y: [0, -28, 0] }}
-        transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
-      />
+      <div className="container-page grid items-center gap-14 lg:grid-cols-12">
+        {/* Left — editorial masthead */}
+        <div className="lg:col-span-6 xl:col-span-6">
+          <p className="anim-fade-up anim-delay-1 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.4em] text-primary-400">
+            <span className="h-px w-10 bg-primary-400/60" aria-hidden />
+            {t('edHome.issueLine')}
+          </p>
 
-      {/* Entrance uses CSS animation so text is visible from the first HTML
-          paint (LCP not gated on JS); framer only drives the scroll parallax. */}
-      <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="container-page relative z-10 text-white"
-      >
-        <span className="anim-fade-up anim-delay-1 mb-5 inline-block rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold backdrop-blur">
-          ✨ {eyebrow}
-        </span>
+          <h1 className="anim-fade-up anim-delay-2 mt-6 font-editorial font-bold uppercase leading-[0.85] tracking-tight">
+            <span className="block text-7xl text-primary-900 sm:text-8xl lg:text-[7.5rem]">
+              {t('hero.titleTop')}
+            </span>
+            <span className="block bg-gradient-primary bg-clip-text text-7xl text-transparent sm:text-8xl lg:text-[7.5rem]">
+              {t('hero.titleAccent')}
+            </span>
+          </h1>
 
-        <h1 className="anim-fade-up anim-delay-2 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
-          {title}{' '}
-          <span className="bg-gradient-to-r from-secondary to-secondary-300 bg-clip-text text-transparent">
-            {highlight}
-          </span>
-        </h1>
+          <p className="anim-fade-up anim-delay-3 mt-6 font-editorial text-2xl font-medium uppercase tracking-wide text-primary-700/80 sm:text-3xl">
+            {t('hero.tagline')}
+          </p>
 
-        <p className="anim-fade-up anim-delay-3 mt-6 max-w-xl text-lg text-white/85">
-          {subtitle}
-        </p>
+          <p className="anim-fade-up anim-delay-3 mt-5 max-w-md border-l-2 border-primary-400/50 pl-4 text-base leading-relaxed text-primary-800/70">
+            {subtitle}
+          </p>
 
-        <div className="anim-fade-up anim-delay-4 mt-8 flex flex-wrap items-center gap-4">
-          <Button to="/packages" size="lg" icon={FiArrowRight} iconRight>
-            {t('hero.ctaPackages')}
-          </Button>
-          <Button to="/gallery" size="lg" variant="ghost" icon={FiPlay}>
-            {t('hero.ctaGallery')}
-          </Button>
+          <div className="anim-fade-up anim-delay-4 mt-9 flex flex-wrap items-center gap-4">
+            <Button to="/packages" size="lg" icon={FiArrowRight} iconRight>
+              {t('hero.ctaPackages')}
+            </Button>
+            <Button
+              href={whatsappLink(t('contact.waEnquiry'))}
+              size="lg"
+              variant="outline"
+              icon={FaWhatsapp}
+            >
+              {t('hero.ctaWhatsapp')}
+            </Button>
+          </div>
         </div>
-      </motion.div>
+
+        {/* Right — large rounded visual over soft abstract shapes */}
+        <div className="relative lg:col-span-6">
+          {/* blurred blue circles + gradient shape behind the image */}
+          <motion.div aria-hidden style={{ y: shapeY }} className="absolute inset-0">
+            <div className="absolute -left-10 top-6 h-56 w-56 rounded-full bg-secondary-300/50 blur-3xl" />
+            <div className="absolute -right-12 bottom-0 h-72 w-72 rounded-full bg-primary-400/25 blur-3xl" />
+            <div className="absolute right-8 top-0 h-40 w-40 rotate-12 rounded-3xl bg-gradient-primary opacity-15 blur-xl" />
+          </motion.div>
+
+          <motion.div style={{ y: imgY }} className="anim-fade-up anim-delay-2 relative">
+            <OptimizedImage
+              src={bgImage}
+              alt="Bali"
+              priority
+              sizes="(min-width: 1024px) 44vw, 92vw"
+              className="aspect-[4/5] w-full rounded-3xl object-cover shadow-glass-lg sm:aspect-[16/11] lg:aspect-[4/5]"
+            />
+            {/* floating glass stat chip */}
+            <div className="glass absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl px-5 py-3">
+              <span className="font-editorial text-3xl font-bold text-primary">
+                {company.stats[0].value.toLocaleString()}+
+              </span>
+              <span className="max-w-[8rem] text-xs font-medium leading-tight text-primary-800/80">
+                {loc(company.stats[0].label)}
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

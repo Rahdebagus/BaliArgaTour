@@ -9,6 +9,8 @@ import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 import '@fontsource/plus-jakarta-sans/700.css';
 import '@fontsource/plus-jakarta-sans/800.css';
+import '@fontsource/barlow-condensed/500.css';
+import '@fontsource/barlow-condensed/700.css';
 import './index.css';
 
 // vite-react-ssg owns the Router + HelmetProvider and prerenders each route

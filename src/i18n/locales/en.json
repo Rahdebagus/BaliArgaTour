@@ -25,7 +25,11 @@
   "hero": {
     "eyebrow": "Welcome to Bali",
     "highlight": "Tour & Travel",
-    "ctaPackages": "View Tour Packages",
+    "titleTop": "Discover",
+    "titleAccent": "Bali",
+    "tagline": "Experience the Island Like Never Before",
+    "ctaPackages": "View Packages",
+    "ctaWhatsapp": "WhatsApp",
     "ctaGallery": "Gallery"
   },
   "home": {
@@ -46,6 +50,48 @@
     "faqEyebrow": "FAQ",
     "faqTitle": "Frequently Asked Questions"
   },
+  "search": {
+    "title": "Plan Your Journey",
+    "subtitle": "Find the right tour in seconds.",
+    "category": "Category",
+    "anyCategory": "All Categories",
+    "destination": "Destination",
+    "anyDestination": "All Destinations",
+    "guests": "Guests",
+    "guestsOption": "{{count}} guests",
+    "duration": "Duration",
+    "anyDuration": "Any Duration",
+    "halfDay": "Half Day",
+    "fullDay": "Full Day",
+    "price": "Budget",
+    "anyPrice": "Any Budget",
+    "priceLow": "< IDR 1M",
+    "priceMid": "IDR 1–2M",
+    "priceHigh": "> IDR 2M",
+    "button": "Find Tours"
+  },
+  "testimonials": {
+    "kicker": "Guest Words",
+    "title": "Stories from Our Guests"
+  },
+  "story": {
+    "kicker": "Travel Stories",
+    "title": "Postcards from the Island of the Gods",
+    "lead": "The small moments that make every journey feel personal — captured by our team and our guests."
+  },
+  "journey": {
+    "kicker": "Guest Gallery",
+    "title": "Our Journey with Guests",
+    "lead": "Every guest brings a new story. Here are a few of them.",
+    "cta": "Explore the Full Gallery"
+  },
+  "edHome": {
+    "packagesKicker": "Our Curation",
+    "destinationsKicker": "Inspiration Map",
+    "vehiclesKicker": "The Fleet",
+    "faqKicker": "Q & A",
+    "issueLine": "Bali · The Travel Issue"
+  },
   "cta": {
     "title": "Ready to Start Your Adventure in Bali?",
     "subtitle": "Contact us now and get the best deals for your dream holiday.",
@@ -54,6 +100,7 @@
   },
   "footer": {
     "menu": "Menu",
+    "destinations": "Destinations",
     "contact": "Contact",
     "rights": "All rights reserved.",
     "madeWith": "Made with ♥ in Bali"

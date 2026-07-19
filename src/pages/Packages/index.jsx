@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { m as motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { PageHeader, SkeletonGrid, CTA } from '@/components/ui';
@@ -13,7 +14,11 @@ export default function Packages() {
   const { data, loading } = useFetch(() => packagesService.getAll(), [], {
     initialData: packagesService.getAllSync(),
   });
-  const [category, setCategory] = useState('All');
+  // Seed the filter from ?category=… (set by the Home tour-search card).
+  const [searchParams] = useSearchParams();
+  const [category, setCategory] = useState(
+    () => searchParams.get('category') || 'All'
+  );
 
   const crumb = [
     { label: t('nav.home'), to: '/' },

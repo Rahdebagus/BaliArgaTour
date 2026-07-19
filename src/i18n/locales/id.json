@@ -25,7 +25,11 @@
   "hero": {
     "eyebrow": "Welcome to Bali",
     "highlight": "Tour & Travel",
+    "titleTop": "Jelajahi",
+    "titleAccent": "Bali",
+    "tagline": "Rasakan Pulau Dewata Seperti Belum Pernah Sebelumnya",
     "ctaPackages": "Lihat Paket Tour",
+    "ctaWhatsapp": "WhatsApp",
     "ctaGallery": "Galeri"
   },
   "home": {
@@ -46,6 +50,48 @@
     "faqEyebrow": "FAQ",
     "faqTitle": "Pertanyaan yang Sering Diajukan"
   },
+  "search": {
+    "title": "Rencanakan Perjalananmu",
+    "subtitle": "Temukan tour yang tepat dalam hitungan detik.",
+    "category": "Kategori",
+    "anyCategory": "Semua Kategori",
+    "destination": "Destinasi",
+    "anyDestination": "Semua Destinasi",
+    "guests": "Jumlah Tamu",
+    "guestsOption": "{{count}} tamu",
+    "duration": "Durasi",
+    "anyDuration": "Semua Durasi",
+    "halfDay": "Setengah Hari",
+    "fullDay": "Sehari Penuh",
+    "price": "Budget",
+    "anyPrice": "Semua Budget",
+    "priceLow": "< Rp 1 jt",
+    "priceMid": "Rp 1–2 jt",
+    "priceHigh": "> Rp 2 jt",
+    "button": "Cari Tour"
+  },
+  "testimonials": {
+    "kicker": "Kata Tamu Kami",
+    "title": "Cerita dari Para Tamu"
+  },
+  "story": {
+    "kicker": "Cerita Perjalanan",
+    "title": "Potret dari Pulau Dewata",
+    "lead": "Momen-momen kecil yang membuat setiap perjalanan terasa personal — diabadikan langsung oleh tim dan tamu kami."
+  },
+  "journey": {
+    "kicker": "Galeri Tamu",
+    "title": "Perjalanan Kami Bersama Tamu",
+    "lead": "Setiap tamu membawa cerita baru. Inilah beberapa di antaranya.",
+    "cta": "Jelajahi Galeri Lengkap"
+  },
+  "edHome": {
+    "packagesKicker": "Kurasi Kami",
+    "destinationsKicker": "Peta Inspirasi",
+    "vehiclesKicker": "Armada",
+    "faqKicker": "Tanya Jawab",
+    "issueLine": "Bali · Edisi Perjalanan"
+  },
   "cta": {
     "title": "Siap Memulai Petualangan di Bali?",
     "subtitle": "Hubungi kami sekarang dan dapatkan penawaran terbaik untuk liburan impian Anda.",
@@ -54,6 +100,7 @@
   },
   "footer": {
     "menu": "Menu",
+    "destinations": "Destinasi",
     "contact": "Kontak",
     "rights": "All rights reserved.",
     "madeWith": "Made with ♥ in Bali"
