@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, startTransition } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import {
   m as motion,
@@ -31,8 +31,14 @@ export default function MainLayout() {
   // and only enabled once mounted — keeping transitions for client-side route
   // navigation (docs/09, docs/10). SSR + first client render therefore emit the
   // wrapper at its final opacity/transform, matching for hydration.
+  // Enabling the entrance transition is a non-urgent update: marking it with
+  // startTransition lets React finish hydrating the lazy route first, instead
+  // of discarding the server HTML and client-rendering the page (React #421 —
+  // the main hydration cost hurting TBT). See docs/09, docs/10.
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    startTransition(() => setMounted(true));
+  }, []);
 
   return (
     <LazyMotion features={domAnimation}>
