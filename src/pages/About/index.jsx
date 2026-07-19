@@ -60,7 +60,7 @@ export default function About() {
         >
           <OptimizedImage
             src="/images/about-story.webp"
-            alt="Tim Arga Bali Tour"
+            alt="Tim Bali Arga Tour"
             width={800}
             height={600}
             sizes="(min-width: 1024px) 50vw, 100vw"

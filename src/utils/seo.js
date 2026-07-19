@@ -11,7 +11,7 @@ export const SITE = {
   name: company.name,
   description: localize(company.description),
   locale: 'id_ID',
-  twitter: '@argabalitour',
+  twitter: '@baliargatour',
   defaultImage: '/images/arga-og.webp',
   logo: `${SEO_SITE_URL}/favicon.svg`,
 };

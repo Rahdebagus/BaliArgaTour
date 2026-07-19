@@ -8,6 +8,11 @@ import Button from '@/components/ui/Button';
 import LanguageSwitcher from './LanguageSwitcher';
 import { company, whatsappLink } from '@/data/company';
 
+// Brand lockup: all but the final word in near-black, last word accented blue.
+const BRAND_WORDS = company.name.split(' ');
+const BRAND_LEAD = BRAND_WORDS.slice(0, -1).join(' ');
+const BRAND_ACCENT = BRAND_WORDS[BRAND_WORDS.length - 1];
+
 const NAV_LINKS = [
   { to: '/', key: 'home' },
   { to: '/destinations', key: 'destinations' },
@@ -43,11 +48,17 @@ export default function Navbar() {
     >
       <nav className="container-page flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-primary font-display text-lg font-extrabold text-white">
-            A
-          </span>
-          <span className="font-display text-lg font-extrabold text-primary-900">
-            {company.name}
+          <img
+            src="/images/logo_arga.webp"
+            alt=""
+            width={64}
+            height={64}
+            loading="eager"
+            decoding="async"
+            className="h-16 w-16 shrink-0 object-contain"
+          />
+          <span className="font-editorial text-2xl font-bold uppercase tracking-tight text-primary-900">
+            {BRAND_LEAD} <span className="text-secondary">{BRAND_ACCENT}</span>
           </span>
         </Link>
 

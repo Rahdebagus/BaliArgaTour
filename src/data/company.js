@@ -6,7 +6,7 @@
 import { SEO_SITE_URL } from '../config/site.js';
 
 export const company = {
-  name: 'Arga Bali Tour',
+  name: 'Bali Arga Tour',
   tagline: {
     id: 'Tour & Travel Premium di Bali',
     en: 'Premium Bali Tour & Travel',
@@ -23,11 +23,11 @@ export const company = {
   mapUrl: 'https://maps.google.com/?q=Ubud+Bali',
   siteUrl: SEO_SITE_URL,
   socials: {
-    instagram: 'https://instagram.com/argabalitour',
-    facebook: 'https://facebook.com/argabalitour',
-    tiktok: 'https://tiktok.com/@argabalitour',
-    youtube: 'https://youtube.com/@argabalitour',
-    tripadvisor: 'https://tripadvisor.com/argabalitour',
+    instagram: 'https://instagram.com/baliargatour',
+    facebook: 'https://facebook.com/baliargatour',
+    tiktok: 'https://tiktok.com/@baliargatour',
+    youtube: 'https://youtube.com/@baliargatour',
+    tripadvisor: 'https://tripadvisor.com/baliargatour',
   },
   stats: [
     { key: 'travelers', label: { id: 'Wisatawan Puas', en: 'Happy Travelers' }, value: 12500, suffix: '+' },
