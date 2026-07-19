@@ -12,13 +12,13 @@ export const company = {
     id: 'Layanan tour premium, destinasi terbaik, dan transport terpercaya untuk pengalaman liburan tak terlupakan di Pulau Dewata.',
     en: 'Premium tour services, top destinations, and reliable transport for an unforgettable holiday experience on the Island of the Gods.',
   },
-  email: 'hello@argabalitour.com',
-  phone: '+62 812-3456-7890',
+  email: 'hello@baliargatour.com',
+  phone: '+62 812-3856-0792',
   // E.164 without symbols — used to build wa.me links
-  whatsapp: '6281234567890',
+  whatsapp: '6281238560792',
   address: 'Jl. Raya Ubud No. 88, Gianyar, Bali 80571, Indonesia',
   mapUrl: 'https://maps.google.com/?q=Ubud+Bali',
-  siteUrl: 'https://argabalitour.com',
+  siteUrl: 'https://www.baliargatour.com',
   socials: {
     instagram: 'https://instagram.com/argabalitour',
     facebook: 'https://facebook.com/argabalitour',
