@@ -6,7 +6,8 @@ import { LANGUAGES } from './languages';
 import { persistLanguage } from '@/i18n';
 import { toLang } from '@/i18n/useLoc';
 
-const flagSrc = (flag) => `https://flagcdn.com/w40/${flag}.png`;
+// Self-hosted flags (public/flags/) — no external image provider.
+const flagSrc = (flag) => `/flags/${flag}.png`;
 
 const Flag = ({ flag }) => (
   <img

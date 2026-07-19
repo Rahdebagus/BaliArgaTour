@@ -36,11 +36,8 @@ export default function Navbar() {
     }`;
 
   return (
-    <motion.header
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`glass fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+    <header
+      className={`anim-nav-in glass fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled ? 'py-3 shadow-glass-lg' : 'py-4'
       }`}
     >
@@ -127,6 +124,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

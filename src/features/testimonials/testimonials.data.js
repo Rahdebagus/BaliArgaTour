@@ -1,4 +1,5 @@
-// Guest testimonials — bilingual { id, en } text; `flag` is a flagcdn code.
+// Guest testimonials — bilingual { id, en } text; `flag` resolves to
+// /flags/<flag>.png (self-hosted).
 // Avatars render as gradient initials (no external requests, docs/10).
 export const testimonials = [
   {

@@ -65,8 +65,23 @@
 .anim-delay-3 { animation-delay: 0.34s; }
 .anim-delay-4 { animation-delay: 0.46s; }
 
+/* Navbar entrance — CSS (not JS) so the fixed header is on-screen from the
+   first HTML paint, not translated off-screen until hydration. */
+@keyframes nav-in {
+  from {
+    transform: translateY(-80px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.anim-nav-in {
+  animation: nav-in 0.5s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .anim-fade-up {
+  .anim-fade-up,
+  .anim-nav-in {
     animation: none;
   }
 }

@@ -1,6 +1,6 @@
 // Dummy gallery data — drives /gallery (docs/06_ROUTING.md).
 // `alt` is bilingual ({ id, en }); categories are stable keys translated in UI.
-// Extra width/height args at call sites are consumed by scripts/fetch-images.mjs.
+// Images are self-hosted AVIF/WebP in public/images/ (scripts/optimize-images.mjs).
 const img = (seed) => `/images/${seed}.webp`;
 
 export const galleryCategories = ['All', 'Nature', 'Beach', 'Culture', 'Adventure'];

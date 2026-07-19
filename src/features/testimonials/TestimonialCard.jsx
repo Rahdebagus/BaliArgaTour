@@ -50,7 +50,7 @@ function TestimonialCard({ item }) {
           </cite>
           <span className="flex items-center gap-1.5 text-xs text-primary-700/70">
             <img
-              src={`https://flagcdn.com/w20/${item.flag}.png`}
+              src={`/flags/${item.flag}.png`}
               alt=""
               width={16}
               height={12}

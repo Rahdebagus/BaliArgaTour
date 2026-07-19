@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "images:optimize": "node scripts/optimize-images.mjs",
     "prebuild": "node scripts/generate-sitemap.mjs",
     "build": "vite-react-ssg build",
     "build:spa": "vite build",
@@ -29,7 +30,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
-    "beasties": "^0.4.3",
+    "beasties": "0.1.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^4.6.2",

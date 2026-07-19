@@ -21,4 +21,12 @@ module.exports = {
     // Hero LCP image.
     'react/no-unknown-property': ['error', { ignore: ['fetchpriority'] }],
   },
+  overrides: [
+    {
+      // Node-run build tooling (Vite/Tailwind/PostCSS config + scripts) —
+      // these use Node globals like __dirname/process, not the browser env.
+      files: ['*.config.js', 'scripts/**/*.mjs'],
+      env: { node: true, browser: false },
+    },
+  ],
 };

@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import {
   m as motion,
@@ -26,6 +26,13 @@ import { pageTransition } from '@/utils/animations';
  */
 export default function MainLayout() {
   const location = useLocation();
+  // The first server-rendered page must be fully visible without hydration, so
+  // the entrance transition is disabled on the initial paint (initial={false})
+  // and only enabled once mounted — keeping transitions for client-side route
+  // navigation (docs/09, docs/10). SSR + first client render therefore emit the
+  // wrapper at its final opacity/transform, matching for hydration.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <LazyMotion features={domAnimation}>
@@ -36,11 +43,11 @@ export default function MainLayout() {
 
           <main className="flex-1">
             <Suspense fallback={<Loader />}>
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={location.pathname}
                   variants={pageTransition}
-                  initial="initial"
+                  initial={mounted ? 'initial' : false}
                   animate="animate"
                   exit="exit"
                 >
