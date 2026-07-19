@@ -8,9 +8,10 @@
     "dev": "vite",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
+    "clean": "node scripts/clean-dist.mjs",
     "prebuild": "node scripts/generate-sitemap.mjs",
-    "build": "vite-react-ssg build",
-    "build:spa": "vite build",
+    "build": "node scripts/clean-dist.mjs && vite-react-ssg build",
+    "build:spa": "node scripts/clean-dist.mjs && vite build",
     "preview": "vite preview",
     "lint": "eslint ."
   },

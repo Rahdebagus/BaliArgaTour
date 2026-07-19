@@ -3,15 +3,17 @@
 // SSG prerenders the default language, and schema builders accept a `lang`.
 import { company } from '@/data/company';
 import { localize } from '@/i18n/useLoc';
+import { SEO_SITE_URL } from '@/config/site';
 
 export const SITE = {
-  url: company.siteUrl,
+  // Canonical production domain — SEO surfaces only (canonical, OG, JSON-LD).
+  url: SEO_SITE_URL,
   name: company.name,
   description: localize(company.description),
   locale: 'id_ID',
   twitter: '@argabalitour',
   defaultImage: '/images/arga-og.webp',
-  logo: `${company.siteUrl}/favicon.svg`,
+  logo: `${SEO_SITE_URL}/favicon.svg`,
 };
 
 /** Absolute URL from a path. */

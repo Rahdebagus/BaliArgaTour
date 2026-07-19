@@ -1,6 +1,9 @@
 // Company profile / contact info — single source of truth for
 // Navbar, Footer, Contact page and Floating WhatsApp (docs/05_COMPONENTS.md).
 // Bilingual fields use the { id, en } shape and are read via loc() (docs/08).
+// Relative import (not the `@` alias) so the plain-Node sitemap script can
+// import this module too.
+import { SEO_SITE_URL } from '../config/site.js';
 
 export const company = {
   name: 'Arga Bali Tour',
@@ -18,7 +21,7 @@ export const company = {
   whatsapp: '6281238560792',
   address: 'Jl. Raya Ubud No. 88, Gianyar, Bali 80571, Indonesia',
   mapUrl: 'https://maps.google.com/?q=Ubud+Bali',
-  siteUrl: 'https://www.baliargatour.com',
+  siteUrl: SEO_SITE_URL,
   socials: {
     instagram: 'https://instagram.com/argabalitour',
     facebook: 'https://facebook.com/argabalitour',
