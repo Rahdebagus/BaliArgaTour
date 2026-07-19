@@ -43,7 +43,7 @@ export default function Packages() {
         title={t('packagesPage.title')}
         subtitle={t('packagesPage.subtitle')}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/pkg-header/1920/700"
+        bgImage="/images/pkg-header.webp"
       />
 
       <section className="container-page py-16 lg:py-20">

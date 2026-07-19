@@ -1,7 +1,7 @@
 // Dummy destination data. Image URLs use picsum.photos seeds so they render
 // out-of-the-box; replace with real /images/... assets later.
 // Bilingual fields use the { id, en } shape (read via loc(), docs/08).
-const img = (seed) => `https://picsum.photos/seed/${seed}/1200/800`;
+const img = (seed) => `/images/${seed}.webp`;
 
 export const destinations = [
   {

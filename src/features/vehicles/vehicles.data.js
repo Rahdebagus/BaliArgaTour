@@ -1,6 +1,6 @@
 // Dummy fleet data — drives /vehicles (docs/06_ROUTING.md).
 // Bilingual fields use the { id, en } shape (docs/08).
-const img = (seed) => `https://picsum.photos/seed/${seed}/1000/700`;
+const img = (seed) => `/images/${seed}.webp`;
 
 export const vehicles = [
   {

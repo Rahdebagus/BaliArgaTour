@@ -10,7 +10,7 @@ export const SITE = {
   description: localize(company.description),
   locale: 'id_ID',
   twitter: '@argabalitour',
-  defaultImage: 'https://picsum.photos/seed/arga-og/1200/630',
+  defaultImage: '/images/arga-og.webp',
   logo: `${company.siteUrl}/favicon.svg`,
 };
 
@@ -33,7 +33,7 @@ export const organizationSchema = (lang) => ({
   description: localize(company.description, lang),
   url: SITE.url,
   logo: SITE.logo,
-  image: SITE.defaultImage,
+  image: absoluteUrl(SITE.defaultImage),
   telephone: company.phone,
   email: company.email,
   address: {
@@ -81,7 +81,7 @@ export const tourSchema = (pkg, lang) => ({
   '@type': 'Product',
   name: pkg.title,
   description: localize(pkg.shortDescription, lang),
-  image: pkg.image,
+  image: absoluteUrl(pkg.image),
   brand: { '@type': 'Brand', name: SITE.name },
   offers: {
     '@type': 'Offer',

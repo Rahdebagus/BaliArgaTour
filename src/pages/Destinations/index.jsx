@@ -29,7 +29,7 @@ export default function Destinations() {
         title={t('destinationsPage.title')}
         subtitle={t('destinationsPage.subtitle')}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/dest-header/1920/700"
+        bgImage="/images/dest-header.webp"
       />
 
       <section className="container-page py-16 lg:py-20">

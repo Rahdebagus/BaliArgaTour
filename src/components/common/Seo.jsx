@@ -29,6 +29,9 @@ export default function Seo({
   const lang = useLang();
   const canonical = absoluteUrl(pathname);
   const fullTitle = buildTitle(title, lang);
+  // Social crawlers require absolute image URLs; local /images/... paths
+  // are resolved against the canonical site origin.
+  const ogImage = image.startsWith('/') ? absoluteUrl(image) : image;
 
   const graphs = [organizationSchema(lang), websiteSchema(), ...schema];
 
@@ -46,7 +49,7 @@ export default function Seo({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:locale" content={SITE.locale} />
 
       {/* Twitter */}
@@ -54,7 +57,7 @@ export default function Seo({
       <meta name="twitter:site" content={SITE.twitter} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={ogImage} />
 
       {/* JSON-LD */}
       {graphs.map((g, i) => (

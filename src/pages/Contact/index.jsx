@@ -50,7 +50,7 @@ export default function Contact() {
         title={t('contact.title')}
         subtitle={t('contact.subtitle')}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/contact-header/1920/700"
+        bgImage="/images/contact-header.webp"
       />
 
       <section className="container-page grid gap-12 py-16 lg:grid-cols-2 lg:py-24">

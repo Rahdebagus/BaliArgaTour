@@ -10,6 +10,12 @@ export default defineConfig(({ isSsrBuild }) => ({
     entry: 'src/main.jsx',
     formatting: 'none',
     dirStyle: 'nested',
+    // Inline above-the-fold CSS into each page and lazy-load the rest —
+    // removes the stylesheet from the render-critical request chain.
+    beastiesOptions: {
+      preload: 'media',
+      pruneSource: false,
+    },
     // Head-manager tags are prepended before <meta charset>; browsers (and
     // Lighthouse best-practices) require charset within the first bytes of
     // <head>, so hoist it back to the front after each page renders.

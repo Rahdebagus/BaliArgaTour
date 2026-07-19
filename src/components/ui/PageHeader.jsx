@@ -3,7 +3,6 @@ import { m as motion, useScroll, useTransform } from 'framer-motion';
 import { Head } from 'vite-react-ssg';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import OptimizedImage, { preloadProps } from './OptimizedImage';
-import { staggerContainer, fadeInUp } from '@/utils/animations';
 
 /**
  * Inner-page banner: gradient/overlay background with scroll parallax, title,
@@ -14,7 +13,7 @@ export default function PageHeader({
   title,
   subtitle,
   breadcrumb = [],
-  bgImage = 'https://picsum.photos/seed/page-header/1920/700',
+  bgImage = '/images/page-header.webp',
 }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -44,29 +43,23 @@ export default function PageHeader({
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/90 to-primary-900/60" />
       </motion.div>
 
-      <motion.div
-        variants={staggerContainer(0.12)}
-        initial="hidden"
-        animate="show"
-        className="container-page relative z-10 py-12 text-white"
-      >
+      {/* Entrance uses CSS animation so the h1 (LCP element on inner pages)
+          is visible from the first HTML paint — not gated on hydration. */}
+      <div className="container-page relative z-10 py-12 text-white">
         {breadcrumb.length > 0 && (
-          <motion.div variants={fadeInUp} className="mb-4">
+          <div className="anim-fade-up anim-delay-1 mb-4">
             <Breadcrumb items={breadcrumb} />
-          </motion.div>
+          </div>
         )}
-        <motion.h1
-          variants={fadeInUp}
-          className="font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl"
-        >
+        <h1 className="anim-fade-up anim-delay-2 font-display text-3xl font-extrabold sm:text-4xl lg:text-5xl">
           {title}
-        </motion.h1>
+        </h1>
         {subtitle && (
-          <motion.p variants={fadeInUp} className="mt-4 max-w-2xl text-white/85">
+          <p className="anim-fade-up anim-delay-3 mt-4 max-w-2xl text-white/85">
             {subtitle}
-          </motion.p>
+          </p>
         )}
-      </motion.div>
+      </div>
     </section>
   );
 }

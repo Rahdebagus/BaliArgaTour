@@ -47,7 +47,7 @@ export default function About() {
         title={t('about.title')}
         subtitle={t('about.subtitle', { name: company.name })}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/about-header/1920/700"
+        bgImage="/images/about-header.webp"
       />
 
       {/* Story */}
@@ -59,7 +59,7 @@ export default function About() {
           viewport={viewport}
         >
           <OptimizedImage
-            src="https://picsum.photos/seed/about-story/800/600"
+            src="/images/about-story.webp"
             alt="Tim Arga Bali Tour"
             width={800}
             height={600}

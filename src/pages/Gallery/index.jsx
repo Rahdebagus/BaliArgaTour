@@ -36,7 +36,7 @@ export default function Gallery() {
         title={t('galleryPage.title')}
         subtitle={t('galleryPage.subtitle')}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/gal-header/1920/700"
+        bgImage="/images/gal-header.webp"
       />
 
       <section className="container-page py-16 lg:py-20">

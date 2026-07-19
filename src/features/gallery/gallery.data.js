@@ -1,7 +1,7 @@
 // Dummy gallery data — drives /gallery (docs/06_ROUTING.md).
 // `alt` is bilingual ({ id, en }); categories are stable keys translated in UI.
-const img = (seed, w = 800, h = 800) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+// Extra width/height args at call sites are consumed by scripts/fetch-images.mjs.
+const img = (seed) => `/images/${seed}.webp`;
 
 export const galleryCategories = ['All', 'Nature', 'Beach', 'Culture', 'Adventure'];
 

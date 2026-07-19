@@ -29,7 +29,7 @@ export default function Vehicles() {
         title={t('vehiclesPage.title')}
         subtitle={t('vehiclesPage.subtitle')}
         breadcrumb={crumb}
-        bgImage="https://picsum.photos/seed/veh-header/1920/700"
+        bgImage="/images/veh-header.webp"
       />
 
       <section className="container-page py-16 lg:py-20">

@@ -5,7 +5,6 @@ import { FiArrowRight, FiPlay } from 'react-icons/fi';
 import { Head } from 'vite-react-ssg';
 import Button from './Button';
 import OptimizedImage, { preloadProps } from './OptimizedImage';
-import { staggerContainer, fadeInUp } from '@/utils/animations';
 import { company } from '@/data/company';
 import { useLoc } from '@/i18n/useLoc';
 
@@ -15,7 +14,7 @@ import { useLoc } from '@/i18n/useLoc';
  */
 export default function Hero({
   title = company.name,
-  bgImage = 'https://picsum.photos/seed/hero-bali/1920/1080',
+  bgImage = '/images/hero-bali.webp',
 }) {
   const { t } = useTranslation();
   const loc = useLoc();
@@ -70,48 +69,35 @@ export default function Hero({
         transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
       />
 
+      {/* Entrance uses CSS animation so text is visible from the first HTML
+          paint (LCP not gated on JS); framer only drives the scroll parallax. */}
       <motion.div
-        variants={staggerContainer(0.15)}
-        initial="hidden"
-        animate="show"
         style={{ y: contentY, opacity: contentOpacity }}
         className="container-page relative z-10 text-white"
       >
-        <motion.span
-          variants={fadeInUp}
-          className="mb-5 inline-block rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold backdrop-blur"
-        >
+        <span className="anim-fade-up anim-delay-1 mb-5 inline-block rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold backdrop-blur">
           ✨ {eyebrow}
-        </motion.span>
+        </span>
 
-        <motion.h1
-          variants={fadeInUp}
-          className="max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl"
-        >
+        <h1 className="anim-fade-up anim-delay-2 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
           {title}{' '}
           <span className="bg-gradient-to-r from-secondary to-secondary-300 bg-clip-text text-transparent">
             {highlight}
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          variants={fadeInUp}
-          className="mt-6 max-w-xl text-lg text-white/85"
-        >
+        <p className="anim-fade-up anim-delay-3 mt-6 max-w-xl text-lg text-white/85">
           {subtitle}
-        </motion.p>
+        </p>
 
-        <motion.div
-          variants={fadeInUp}
-          className="mt-8 flex flex-wrap items-center gap-4"
-        >
+        <div className="anim-fade-up anim-delay-4 mt-8 flex flex-wrap items-center gap-4">
           <Button to="/packages" size="lg" icon={FiArrowRight} iconRight>
             {t('hero.ctaPackages')}
           </Button>
           <Button to="/gallery" size="lg" variant="ghost" icon={FiPlay}>
             {t('hero.ctaGallery')}
           </Button>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
