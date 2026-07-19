@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import OptimizedImage from './OptimizedImage';
 import { staggerContainer, scaleIn, viewport } from '@/utils/animations';

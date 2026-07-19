@@ -1,7 +1,8 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m as motion, useScroll, useTransform } from 'framer-motion';
+import { Head } from 'vite-react-ssg';
 import Breadcrumb from '@/components/common/Breadcrumb';
-import OptimizedImage from './OptimizedImage';
+import OptimizedImage, { preloadProps } from './OptimizedImage';
 import { staggerContainer, fadeInUp } from '@/utils/animations';
 
 /**
@@ -27,6 +28,10 @@ export default function PageHeader({
       ref={ref}
       className="relative flex min-h-[42vh] items-center overflow-hidden pt-20"
     >
+      {/* Preload the LCP image before the JS bundle executes */}
+      <Head>
+        <link rel="preload" as="image" fetchpriority="high" {...preloadProps(bgImage)} />
+      </Head>
       <motion.div style={{ y: bgY }} className="absolute -inset-y-[16%] inset-x-0">
         <OptimizedImage
           src={bgImage}

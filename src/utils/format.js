@@ -15,18 +15,3 @@ export function formatCurrency(amount, currency = 'IDR', locale = 'id-ID') {
   }).format(amount);
 }
 
-/** Turn a slug into a Title Case label: "nusa-penida" -> "Nusa Penida". */
-export function slugToTitle(slug = '') {
-  return slug
-    .split('-')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-}
-
-/** Compact number for stat counters: 12500 -> "12.5K". */
-export function formatCompact(value, locale = 'en-US') {
-  return new Intl.NumberFormat(locale, {
-    notation: 'compact',
-    maximumFractionDigits: 1,
-  }).format(value);
-}

@@ -9,4 +9,4 @@ export { default as SectionHeading } from './SectionHeading';
 export { default as PageHeader } from './PageHeader';
 export { default as Counter } from './Counter';
 export { default as Loader } from './Loader';
-export { default as Skeleton, SkeletonCard, SkeletonGrid } from './Skeleton';
+export { SkeletonCard, SkeletonGrid } from './Skeleton';

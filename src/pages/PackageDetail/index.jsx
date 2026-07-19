@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
   FiClock,
@@ -10,7 +10,7 @@ import {
   FiArrowLeft,
 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import { PageHeader, Button, Loader, CTA } from '@/components/ui';
+import { PageHeader, Button, Loader, CTA, OptimizedImage } from '@/components/ui';
 import { useFetch } from '@/hooks';
 import { packagesService } from '@/features/packages';
 import { formatCurrency } from '@/utils/format';
@@ -85,14 +85,14 @@ export default function PackageDetail() {
             className="mb-10 grid grid-cols-3 gap-3"
           >
             {pkg.gallery?.map((src, i) => (
-              <motion.img
-                key={i}
-                variants={fadeInUp}
-                src={src}
-                alt={`${pkg.title} ${i + 1}`}
-                loading="lazy"
-                className="h-32 w-full rounded-xl object-cover shadow-sm sm:h-40"
-              />
+              <motion.div key={i} variants={fadeInUp}>
+                <OptimizedImage
+                  src={src}
+                  alt={`${pkg.title} ${i + 1}`}
+                  sizes="(min-width: 1024px) 22vw, 33vw"
+                  className="h-32 w-full rounded-xl object-cover shadow-sm sm:h-40"
+                />
+              </motion.div>
             ))}
           </motion.div>
 

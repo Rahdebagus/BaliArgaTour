@@ -1,7 +1,9 @@
 // Drop-in <img> replacement with responsive srcSet, explicit dimensions
 // (reduces CLS) and a JS-free blur-up placeholder (docs/10_PERFORMANCE.md).
-// The low-res placeholder is painted as the element's CSS background, so the
-// sharp image simply covers it once loaded — works without JavaScript (SSG-safe).
+// picsum.photos URLs are rewritten to WebP (~30-40% smaller than JPEG) for the
+// src, every srcSet variant, and the placeholder. The low-res placeholder is
+// painted as the element's CSS background, so the sharp image simply covers it
+// once loaded — works without JavaScript (SSG-safe).
 
 const PICSUM = /^(https:\/\/picsum\.photos\/seed\/[^/]+)\/(\d+)\/(\d+)/;
 const WIDTHS = [480, 768, 1200, 1600];
@@ -12,10 +14,13 @@ function picsumVariants(src) {
   const [, base, w, h] = m;
   const aspect = Number(w) / Number(h);
   const srcSet = WIDTHS.map(
-    (tw) => `${base}/${tw}/${Math.round(tw / aspect)} ${tw}w`
+    (tw) => `${base}/${tw}/${Math.round(tw / aspect)}.webp ${tw}w`
   ).join(', ');
-  const placeholder = `${base}/24/${Math.round(24 / aspect)}?blur=4`;
-  return { srcSet, placeholder };
+  return {
+    src: `${base}/${w}/${h}.webp`,
+    srcSet,
+    placeholder: `${base}/24/${Math.round(24 / aspect)}.webp?blur=4`,
+  };
 }
 
 export default function OptimizedImage({
@@ -33,7 +38,7 @@ export default function OptimizedImage({
 
   return (
     <img
-      src={src}
+      src={variants?.src ?? src}
       srcSet={variants?.srcSet}
       sizes={variants ? sizes : undefined}
       alt={alt}
@@ -56,4 +61,18 @@ export default function OptimizedImage({
       {...rest}
     />
   );
+}
+
+/**
+ * Build a preload descriptor for a picsum image — used with <Head> so the
+ * browser starts fetching the LCP image before the JS bundle executes.
+ */
+export function preloadProps(src, sizes = '100vw') {
+  const variants = picsumVariants(src);
+  if (!variants) return { href: src };
+  return {
+    href: variants.src,
+    imageSrcSet: variants.srcSet,
+    imageSizes: sizes,
+  };
 }

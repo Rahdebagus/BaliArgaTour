@@ -10,6 +10,13 @@ export default defineConfig(({ isSsrBuild }) => ({
     entry: 'src/main.jsx',
     formatting: 'none',
     dirStyle: 'nested',
+    // Head-manager tags are prepended before <meta charset>; browsers (and
+    // Lighthouse best-practices) require charset within the first bytes of
+    // <head>, so hoist it back to the front after each page renders.
+    onPageRendered: (_route, html) =>
+      html
+        .replace(/<meta charset="UTF-8">/i, '')
+        .replace(/<head>/i, '<head><meta charset="UTF-8">'),
   },
   resolve: {
     alias: {
@@ -17,8 +24,10 @@ export default defineConfig(({ isSsrBuild }) => ({
     },
   },
   build: {
-    // Manual vendor/motion splitting only for the CLIENT build — during the
-    // SSR pass react/react-dom are externalized and cannot be chunked.
+    sourcemap: false,
+    // Manual vendor/motion/i18n splitting only for the CLIENT build — during
+    // the SSR pass react/react-dom are externalized and cannot be chunked.
+    // Separate long-lived vendor chunks cache well across deploys.
     rollupOptions: isSsrBuild
       ? {}
       : {
@@ -26,6 +35,7 @@ export default defineConfig(({ isSsrBuild }) => ({
             manualChunks: {
               vendor: ['react', 'react-dom', 'react-router-dom'],
               motion: ['framer-motion'],
+              i18n: ['i18next', 'react-i18next'],
             },
           },
         },

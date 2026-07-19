@@ -19,9 +19,9 @@ export const absoluteUrl = (path = '/') =>
   `${SITE.url}${path.startsWith('/') ? path : `/${path}`}`;
 
 /** "Page | Brand", avoiding duplication when the brand is already present. */
-export const buildTitle = (title) =>
+export const buildTitle = (title, lang) =>
   !title || title === SITE.name
-    ? `${SITE.name} — ${company.tagline}`
+    ? `${SITE.name} — ${localize(company.tagline, lang)}`
     : `${title} | ${SITE.name}`;
 
 /* ---------- JSON-LD schema generators ---------- */

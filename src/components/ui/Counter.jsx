@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import {
-  motion,
+  m as motion,
   useInView,
   useMotionValue,
   useTransform,

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { FiChevronDown } from 'react-icons/fi';
 import { staggerContainer, fadeInUp, viewport } from '@/utils/animations';
 import { useLoc } from '@/i18n/useLoc';

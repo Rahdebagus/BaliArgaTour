@@ -28,7 +28,7 @@ export default function Seo({
   const { pathname } = useLocation();
   const lang = useLang();
   const canonical = absoluteUrl(pathname);
-  const fullTitle = buildTitle(title);
+  const fullTitle = buildTitle(title, lang);
 
   const graphs = [organizationSchema(lang), websiteSchema(), ...schema];
 

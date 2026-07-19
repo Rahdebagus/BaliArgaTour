@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { PageHeader, SkeletonGrid, CTA } from '@/components/ui';
 import { useFetch } from '@/hooks';

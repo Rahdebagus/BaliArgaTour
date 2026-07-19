@@ -1,9 +1,10 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { m as motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiArrowRight, FiPlay } from 'react-icons/fi';
+import { Head } from 'vite-react-ssg';
 import Button from './Button';
-import OptimizedImage from './OptimizedImage';
+import OptimizedImage, { preloadProps } from './OptimizedImage';
 import { staggerContainer, fadeInUp } from '@/utils/animations';
 import { company } from '@/data/company';
 import { useLoc } from '@/i18n/useLoc';
@@ -38,6 +39,10 @@ export default function Hero({
       ref={ref}
       className="relative flex min-h-[92vh] items-center overflow-hidden"
     >
+      {/* Preload the LCP image before the JS bundle executes */}
+      <Head>
+        <link rel="preload" as="image" fetchpriority="high" {...preloadProps(bgImage)} />
+      </Head>
       {/* Parallax background image + gradient overlay */}
       <motion.div style={{ y: bgY }} className="absolute -inset-y-[14%] inset-x-0">
         <OptimizedImage
