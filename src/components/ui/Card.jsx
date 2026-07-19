@@ -11,7 +11,7 @@ export default function Card({ children, className = '', ...props }) {
       variants={fadeInUp}
       whileHover={{ y: -8 }}
       transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-      className={`group overflow-hidden rounded-2xl bg-white shadow-glass transition-shadow duration-300 hover:shadow-glass-lg ${className}`}
+      className={`glass group overflow-hidden rounded-3xl transition-shadow duration-300 hover:shadow-glass-lg ${className}`}
       {...props}
     >
       {children}

@@ -25,7 +25,7 @@ function PackageCard({ pkg }) {
           <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-primary backdrop-blur">
             {pkg.category}
           </span>
-          <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-primary-900/70 px-3 py-1 text-xs font-semibold text-secondary backdrop-blur">
+          <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-primary-900/70 px-3 py-1 text-xs font-semibold text-secondary-300 backdrop-blur">
             <FiStar className="fill-secondary" /> {pkg.rating}
           </span>
         </div>

@@ -57,7 +57,7 @@ export default function JourneyGallery({ items = [] }) {
       <div className="mt-14 text-center">
         <Link
           to="/gallery"
-          className="inline-flex items-center gap-2 border-b-2 border-secondary pb-1 font-editorial text-xl font-bold uppercase tracking-wide text-white transition-colors hover:text-secondary"
+          className="inline-flex items-center gap-2 border-b-2 border-secondary pb-1 font-editorial text-xl font-bold uppercase tracking-wide text-white transition-colors hover:text-secondary-300"
         >
           {t('journey.cta')} <FiArrowRight aria-hidden />
         </Link>

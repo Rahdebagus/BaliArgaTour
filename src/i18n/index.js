@@ -4,7 +4,7 @@ import id from './locales/id.json';
 import en from './locales/en.json';
 
 export const SUPPORTED = ['id', 'en'];
-export const DEFAULT_LANG = 'id';
+export const DEFAULT_LANG = 'en';
 const STORAGE_KEY = 'lang';
 
 // Synchronous init with bundled resources so SSR/SSG renders translated markup

@@ -94,6 +94,8 @@ export default function Hero({
               src={bgImage}
               alt="Bali"
               priority
+              width={1200}
+              height={675}
               sizes="(min-width: 1024px) 44vw, 92vw"
               className="aspect-[4/5] w-full rounded-3xl object-cover shadow-glass-lg sm:aspect-[16/11] lg:aspect-[4/5]"
             />

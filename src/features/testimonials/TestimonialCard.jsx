@@ -27,7 +27,7 @@ function TestimonialCard({ item }) {
     >
       <FaQuoteLeft aria-hidden className="absolute right-8 top-8 text-4xl text-primary-100" />
 
-      <div className="mb-4 flex gap-1 text-secondary-500" aria-label={`${item.rating}/5`}>
+      <div role="img" className="mb-4 flex gap-1 text-secondary-500" aria-label={`${item.rating}/5`}>
         {Array.from({ length: item.rating }).map((_, i) => (
           <FaStar key={i} aria-hidden />
         ))}

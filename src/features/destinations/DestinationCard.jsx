@@ -6,11 +6,15 @@ import { useLoc } from '@/i18n/useLoc';
 
 const CARD_SIZES = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw';
 
-function DestinationCard({ destination }) {
+function DestinationCard({ destination, tall = false }) {
   const loc = useLoc();
   return (
-    <Card className="relative">
-      <div className="relative h-72 overflow-hidden">
+    <Card className="relative h-full">
+      <div
+        className={`relative overflow-hidden ${
+          tall ? 'h-72 lg:h-full lg:min-h-[37rem]' : 'h-72'
+        }`}
+      >
         <OptimizedImage
           src={destination.image}
           alt={destination.name}
@@ -25,7 +29,7 @@ function DestinationCard({ destination }) {
         </span>
 
         <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-          <span className="mb-1 flex items-center gap-1 text-xs text-secondary">
+          <span className="mb-1 flex items-center gap-1 text-xs text-secondary-300">
             <FiMapPin /> {destination.region}
           </span>
           <h3 className="font-display text-xl font-bold">{destination.name}</h3>

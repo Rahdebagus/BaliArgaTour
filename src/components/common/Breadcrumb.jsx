@@ -15,11 +15,11 @@ export default function Breadcrumb({ items = [] }) {
           return (
             <li key={item.label} className="flex items-center gap-1.5">
               {item.to && !last ? (
-                <Link to={item.to} className="transition-colors hover:text-secondary">
+                <Link to={item.to} className="transition-colors hover:text-secondary-300">
                   {item.label}
                 </Link>
               ) : (
-                <span className={last ? 'font-medium text-secondary' : ''}>
+                <span className={last ? 'font-medium text-secondary-300' : ''}>
                   {item.label}
                 </span>
               )}

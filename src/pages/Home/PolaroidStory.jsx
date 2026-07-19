@@ -44,6 +44,11 @@ export default function PolaroidStory({ items = [] }) {
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
           className={`relative w-40 shrink-0 rounded-sm bg-white p-2 pb-4 shadow-glass-lg sm:w-48 lg:w-56 ${LAYOUT[i]}`}
         >
+          {/* pin — memories-on-a-board detail */}
+          <span
+            aria-hidden
+            className="absolute -top-2 left-1/2 z-10 h-4 w-4 -translate-x-1/2 rounded-full bg-gradient-primary shadow-md ring-2 ring-white/70"
+          />
           <OptimizedImage
             src={item.src}
             alt={loc(item.alt)}

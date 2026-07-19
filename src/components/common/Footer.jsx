@@ -1,17 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  FiMapPin,
-  FiPhone,
-  FiMail,
-} from 'react-icons/fi';
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaTiktok,
-  FaYoutube,
-} from 'react-icons/fa';
-import { company } from '@/data/company';
+import { FiMapPin, FiPhone, FiMail } from 'react-icons/fi';
+import { FaWhatsapp, FaInstagram, FaTripadvisor } from 'react-icons/fa';
+import { company, whatsappLink } from '@/data/company';
+import { destinations } from '@/features/destinations';
 import { useLoc } from '@/i18n/useLoc';
 
 const QUICK_LINKS = [
@@ -23,39 +15,45 @@ const QUICK_LINKS = [
   { to: '/contact', key: 'contact' },
 ];
 
-const SOCIALS = [
-  { href: company.socials.instagram, icon: FaInstagram, label: 'Instagram' },
-  { href: company.socials.facebook, icon: FaFacebookF, label: 'Facebook' },
-  { href: company.socials.tiktok, icon: FaTiktok, label: 'TikTok' },
-  { href: company.socials.youtube, icon: FaYoutube, label: 'YouTube' },
-];
-
+/**
+ * White glassmorphism footer (same visual language as the navbar):
+ * light surface, dark text, blue accents.
+ */
 export default function Footer() {
   const { t } = useTranslation();
   const loc = useLoc();
+
+  const socials = [
+    { href: whatsappLink(), icon: FaWhatsapp, label: 'WhatsApp' },
+    { href: company.socials.instagram, icon: FaInstagram, label: 'Instagram' },
+    { href: company.socials.tripadvisor, icon: FaTripadvisor, label: 'TripAdvisor' },
+  ];
+
   return (
-    <footer className="mt-24 bg-primary-900 text-white/80">
-      <div className="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-24 border-t border-primary-900/10 bg-primary-50/60">
+      <div className="container-page grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
-        <div>
+        <div className="glass rounded-3xl p-6">
           <div className="mb-4 flex items-center gap-2">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-primary font-display text-lg font-extrabold text-white">
               A
             </span>
-            <span className="font-display text-lg font-extrabold text-white">
+            <span className="font-display text-lg font-extrabold text-primary-900">
               {company.name}
             </span>
           </div>
-          <p className="text-sm leading-relaxed">{loc(company.description)}</p>
+          <p className="text-sm leading-relaxed text-primary-800/70">
+            {loc(company.description)}
+          </p>
           <div className="mt-5 flex gap-3">
-            {SOCIALS.map(({ href, icon: Icon, label }) => (
+            {socials.map(({ href, icon: Icon, label }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 transition-colors hover:bg-secondary hover:text-primary-900"
+                className="grid h-10 w-10 place-items-center rounded-xl border border-primary-100 bg-white text-primary transition-colors hover:bg-gradient-primary hover:text-white"
               >
                 <Icon />
               </a>
@@ -64,42 +62,62 @@ export default function Footer() {
         </div>
 
         {/* Quick links */}
-        <div>
-          <h3 className="mb-4 font-display font-bold text-white">{t('footer.menu')}</h3>
-          <ul className="space-y-2 text-sm">
+        <nav aria-label={t('footer.menu')}>
+          <h3 className="mb-4 font-editorial text-xl font-bold uppercase tracking-wide text-primary-900">
+            {t('footer.menu')}
+          </h3>
+          <ul className="space-y-2.5 text-sm">
             {QUICK_LINKS.map((l) => (
               <li key={l.to}>
                 <Link
                   to={l.to}
-                  className="transition-colors hover:text-secondary"
+                  className="text-primary-800/70 transition-colors hover:text-primary"
                 >
                   {t(`nav.${l.key}`)}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
+
+        {/* Destinations */}
+        <nav aria-label={t('footer.destinations')}>
+          <h3 className="mb-4 font-editorial text-xl font-bold uppercase tracking-wide text-primary-900">
+            {t('footer.destinations')}
+          </h3>
+          <ul className="space-y-2.5 text-sm">
+            {destinations.slice(0, 6).map((d) => (
+              <li key={d.slug}>
+                <Link
+                  to="/destinations"
+                  className="text-primary-800/70 transition-colors hover:text-primary"
+                >
+                  {d.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         {/* Contact */}
-        <div className="lg:col-span-2">
-          <h3 className="mb-4 font-display font-bold text-white">{t('footer.contact')}</h3>
-          <ul className="space-y-3 text-sm">
+        <div>
+          <h3 className="mb-4 font-editorial text-xl font-bold uppercase tracking-wide text-primary-900">
+            {t('footer.contact')}
+          </h3>
+          <ul className="space-y-3 text-sm text-primary-800/70">
             <li className="flex items-start gap-3">
-              <FiMapPin className="mt-0.5 shrink-0 text-secondary" />
+              <FiMapPin className="mt-0.5 shrink-0 text-primary-400" aria-hidden />
               {company.address}
             </li>
             <li className="flex items-center gap-3">
-              <FiPhone className="shrink-0 text-secondary" />
-              <a href={`tel:${company.phone}`} className="hover:text-secondary">
+              <FiPhone className="shrink-0 text-primary-400" aria-hidden />
+              <a href={`tel:${company.phone}`} className="hover:text-primary">
                 {company.phone}
               </a>
             </li>
             <li className="flex items-center gap-3">
-              <FiMail className="shrink-0 text-secondary" />
-              <a
-                href={`mailto:${company.email}`}
-                className="hover:text-secondary"
-              >
+              <FiMail className="shrink-0 text-primary-400" aria-hidden />
+              <a href={`mailto:${company.email}`} className="hover:text-primary">
                 {company.email}
               </a>
             </li>
@@ -107,8 +125,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-white/60 sm:flex-row">
+      <div className="border-t border-primary-900/10">
+        <div className="container-page flex flex-col items-center justify-between gap-2 py-6 text-xs text-primary-800/80 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {company.name}. {t('footer.rights')}
           </p>

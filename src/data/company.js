@@ -24,6 +24,7 @@ export const company = {
     facebook: 'https://facebook.com/argabalitour',
     tiktok: 'https://tiktok.com/@argabalitour',
     youtube: 'https://youtube.com/@argabalitour',
+    tripadvisor: 'https://tripadvisor.com/argabalitour',
   },
   stats: [
     { key: 'travelers', label: { id: 'Wisatawan Puas', en: 'Happy Travelers' }, value: 12500, suffix: '+' },

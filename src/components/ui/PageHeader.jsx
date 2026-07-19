@@ -37,6 +37,8 @@ export default function PageHeader({
           alt=""
           aria-hidden
           priority
+          width={1200}
+          height={438}
           sizes="100vw"
           className="h-full w-full object-cover"
         />
