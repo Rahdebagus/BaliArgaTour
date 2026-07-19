@@ -27,7 +27,7 @@ export default function FloatingWhatsApp() {
             initial={{ opacity: 0, y: 12, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.9 }}
-            className="w-72 overflow-hidden rounded-2xl bg-white shadow-glass-lg"
+            className="w-72 overflow-hidden rounded-2xl bg-paper-50 shadow-glass-lg"
           >
             <div className="flex items-center justify-between bg-[#25D366] px-4 py-3 text-white">
               <span className="flex items-center gap-2 font-semibold">

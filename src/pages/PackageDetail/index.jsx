@@ -123,7 +123,7 @@ export default function PackageDetail() {
 
           {/* Includes / Excludes */}
           <div className="grid gap-6 sm:grid-cols-2">
-            <div className="rounded-2xl bg-white p-6 shadow-glass">
+            <div className="paper-sheet p-6">
               <h3 className="mb-3 font-display font-bold text-primary-900">
                 {t('packageDetail.includes')}
               </h3>
@@ -135,7 +135,7 @@ export default function PackageDetail() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl bg-white p-6 shadow-glass">
+            <div className="paper-sheet p-6">
               <h3 className="mb-3 font-display font-bold text-primary-900">
                 {t('packageDetail.excludes')}
               </h3>
@@ -152,7 +152,7 @@ export default function PackageDetail() {
 
         {/* Booking sidebar */}
         <aside className="lg:col-span-1">
-          <div className="sticky top-28 rounded-2xl bg-white p-6 shadow-glass-lg">
+          <div className="paper-sheet paper-fold sticky top-28 p-6">
             <span className="text-sm text-primary-700/60">
               {t('common.startingFrom')}
             </span>

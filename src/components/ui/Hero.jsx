@@ -33,7 +33,7 @@ export default function Hero({
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-white pb-24 pt-32 lg:pb-32 lg:pt-40"
+      className="relative overflow-hidden bg-background pb-24 pt-32 lg:pb-32 lg:pt-40"
     >
       {/* Preload the hero visual before the JS bundle executes */}
       <Head>

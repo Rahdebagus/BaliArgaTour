@@ -2,7 +2,7 @@ import { m as motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiArrowRight } from 'react-icons/fi';
-import { Hero, FAQ, CTA, Counter, SkeletonGrid } from '@/components/ui';
+import { Hero, FAQ, CTA, Counter, SkeletonGrid, Decor } from '@/components/ui';
 import { useFetch } from '@/hooks';
 import { packagesService, PackageCard } from '@/features/packages';
 import { destinationsService, DestinationCard } from '@/features/destinations';
@@ -22,7 +22,7 @@ import JourneyGallery from './JourneyGallery';
 
 function Section({ children, className = '' }) {
   return (
-    <section className={`container-page py-20 lg:py-28 ${className}`}>
+    <section className={`container-page relative isolate py-20 lg:py-28 ${className}`}>
       {children}
     </section>
   );
@@ -80,8 +80,16 @@ export default function Home() {
       <SearchBar />
 
       {/* About — split editorial layout with animated counters */}
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <Section className="overflow-hidden">
+        {/* Island silhouette drifting behind the editorial headline */}
+        <Decor
+          asset="baliIsland"
+          width={520}
+          opacity={30}
+          motion="float"
+          className="-left-16  top-24 sm:-left-24"
+        />
+        <div className="relative grid gap-12 lg:grid-cols-2 lg:gap-20">
           <motion.div
             variants={fadeInUp}
             initial="hidden"
@@ -131,7 +139,16 @@ export default function Home() {
       </Section>
 
       {/* 01 — Curated packages */}
-      <Section className="pt-0">
+      <Section className="overflow-hidden pt-0">
+        {/* Penjor swaying in the right margin */}
+        <Decor
+          asset="gwk"
+          width={500}
+          opacity={30}
+          motion="sway"
+          className="-right-10 -top-10"
+        />
+     
         <EditorialHeading
           index="01"
           kicker={t('edHome.packagesKicker')}
@@ -159,7 +176,7 @@ export default function Home() {
       </Section>
 
       {/* 02 — Travel memories: polaroids pinned on a light-blue board */}
-      <section className="overflow-hidden bg-primary-50 py-20 lg:py-28">
+      <section className="paper-deckle-t overflow-hidden bg-primary-50 py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
             index="02"
@@ -172,7 +189,15 @@ export default function Home() {
       </section>
 
       {/* 03 — Destinations: one large + smaller editorial grid */}
-      <Section>
+      <Section className="overflow-hidden">
+        {/* "Bali" lettering sitting behind the section number/heading */}
+        <Decor
+          asset="barong"
+          width={420}
+          opacity={20}
+          motion="drift"
+          className="right-0 top-10"
+        />
         <EditorialHeading
           index="03"
           kicker={t('edHome.destinationsKicker')}
@@ -200,7 +225,7 @@ export default function Home() {
       </Section>
 
       {/* 04 — Our journey with guests: asymmetric collage on dark band */}
-      <section className="bg-primary-900 py-20 lg:py-28">
+      <section className="paper-deckle-t bg-primary-900 py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
             index="04"
@@ -214,7 +239,15 @@ export default function Home() {
       </section>
 
       {/* 05 — Testimonials */}
-      <Section>
+      <Section className="overflow-hidden">
+        {/* Canang sari offering tucked into the bottom corner */}
+        <Decor
+          asset="canang"
+          width={300}
+          opacity={30}
+          motion="float"
+          className="-bottom-11 -left-12"
+        />
         <EditorialHeading
           index="05"
           kicker={t('testimonials.kicker')}
@@ -260,7 +293,15 @@ export default function Home() {
       </Section>
 
       {/* 07 — FAQ */}
-      <Section className="pt-0">
+      <Section className="overflow-hidden pt-0">
+        {/* Birds drifting above the FAQ list */}
+        <Decor
+          asset="gwk"
+          width={400}
+          opacity={30}
+          motion="drift"
+          className="right-6 top-6"
+        />
         <EditorialHeading
           index="07"
           kicker={t('edHome.faqKicker')}

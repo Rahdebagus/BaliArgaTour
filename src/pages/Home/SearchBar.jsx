@@ -13,7 +13,7 @@ import { packages } from '@/features/packages';
 import { destinations } from '@/features/destinations';
 
 const selectClass =
-  'w-full appearance-none rounded-xl border border-primary-100 bg-white px-4 py-3 text-sm text-primary-900 outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-400/20';
+  'w-full appearance-none rounded-xl border border-primary-100 bg-paper-50 px-4 py-3 text-sm text-primary-900 outline-none transition-colors focus:border-primary-400 focus:ring-2 focus:ring-primary-400/20';
 
 function Field({ icon: Icon, label, children }) {
   return (

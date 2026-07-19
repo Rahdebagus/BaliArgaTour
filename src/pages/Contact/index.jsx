@@ -3,7 +3,7 @@ import { m as motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiMapPin, FiPhone, FiMail, FiSend } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import { PageHeader, Button } from '@/components/ui';
+import { PageHeader, Button, Decor } from '@/components/ui';
 import { company, whatsappLink } from '@/data/company';
 import { Seo } from '@/components/common';
 import { breadcrumbSchema } from '@/utils/seo';
@@ -53,7 +53,15 @@ export default function Contact() {
         bgImage="/images/contact-header.webp"
       />
 
-      <section className="container-page grid gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      <section className="container-page relative isolate grid gap-12 overflow-hidden py-16 lg:grid-cols-2 lg:py-24">
+        {/* "Bali" lettering drifting in the lower corner */}
+        <Decor
+          asset="baliText"
+          width={380}
+          opacity={30}
+          motion="drift"
+          className="-left-10 bottom-6"
+        />
         {/* Info */}
         <motion.div
           variants={slideInLeft}
@@ -113,7 +121,7 @@ export default function Contact() {
           initial="hidden"
           whileInView="show"
           viewport={viewport}
-          className="rounded-3xl bg-white p-8 shadow-glass-lg"
+          className="paper-sheet paper-fold p-8"
         >
           <h2 className="mb-6 font-display text-2xl font-bold text-primary-900">
             {t('contact.formTitle')}

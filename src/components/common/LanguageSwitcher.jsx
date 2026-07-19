@@ -64,7 +64,7 @@ export default function LanguageSwitcher({ variant = 'dropdown', className = '' 
               className={`flex flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
                   ? 'border-primary bg-primary-50 text-primary'
-                  : 'border-primary-100 bg-white text-primary-800 hover:bg-primary-50'
+                  : 'border-primary-100 bg-paper-50 text-primary-800 hover:bg-primary-50'
               }`}
             >
               <Flag flag={lang.flag} />
@@ -100,7 +100,7 @@ export default function LanguageSwitcher({ variant = 'dropdown', className = '' 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border border-primary-100 bg-white p-1 shadow-glass-lg"
+            className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border border-primary-100 bg-paper-50 p-1 shadow-glass-lg"
           >
             {LANGUAGES.map((lang) => (
               <li key={lang.code}>

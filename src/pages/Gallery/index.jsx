@@ -48,7 +48,7 @@ export default function Gallery() {
               className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
                 category === c
                   ? 'bg-gradient-primary text-white shadow-glass'
-                  : 'bg-white text-primary-700 shadow-sm hover:bg-primary-50'
+                  : 'bg-paper-50 text-primary-700 shadow-sm hover:bg-primary-50'
               }`}
             >
               {c === 'All' ? t('common.all') : c}

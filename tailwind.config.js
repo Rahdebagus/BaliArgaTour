@@ -32,7 +32,16 @@ export default {
           800: '#1E40AF',
           900: '#1E3A8A',
         },
-        background: '#FFFFFF',
+        // Handmade-paper surface tones. Warm ivory rather than pure white so
+        // the blue/orange brand colours read as ink on paper.
+        background: '#FAF6EE',
+        paper: {
+          DEFAULT: '#FAF6EE',
+          50: '#FFFDF8',
+          100: '#FBF7EF',
+          200: '#F4EDE0',
+          300: '#E9DFCB',
+        },
       },
       borderRadius: {
         // 20–32px premium radii

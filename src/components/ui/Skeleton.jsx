@@ -13,7 +13,7 @@ export function Skeleton({ className = '' }) {
 
 export function SkeletonCard() {
   return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-glass">
+    <div className="overflow-hidden rounded-2xl bg-paper-50 shadow-glass">
       <Skeleton className="h-52 w-full rounded-none" />
       <div className="space-y-3 p-5">
         <Skeleton className="h-4 w-1/3" />

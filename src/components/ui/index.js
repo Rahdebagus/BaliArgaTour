@@ -8,5 +8,6 @@ export { default as CTA } from './CTA';
 export { default as SectionHeading } from './SectionHeading';
 export { default as PageHeader } from './PageHeader';
 export { default as Counter } from './Counter';
+export { default as Decor } from './Decor';
 export { default as Loader } from './Loader';
 export { SkeletonCard, SkeletonGrid } from './Skeleton';

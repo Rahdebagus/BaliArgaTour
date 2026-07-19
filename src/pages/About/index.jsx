@@ -7,6 +7,7 @@ import {
   Counter,
   CTA,
   OptimizedImage,
+  Decor,
 } from '@/components/ui';
 import { company } from '@/data/company';
 import { Seo } from '@/components/common';
@@ -51,7 +52,15 @@ export default function About() {
       />
 
       {/* Story */}
-      <section className="container-page grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      <section className="container-page relative isolate grid items-center gap-12 overflow-hidden py-16 lg:grid-cols-2 lg:py-24">
+        {/* GWK statue standing in the right margin beside the story copy */}
+        <Decor
+          asset="gwk"
+          width={230}
+          opacity={30}
+          motion="float"
+          className="-right-12 top-0"
+        />
         <motion.div
           variants={slideInLeft}
           initial="hidden"
@@ -89,7 +98,7 @@ export default function About() {
       </section>
 
       {/* Stats */}
-      <div className="bg-gradient-primary">
+      <div className="paper-deckle-t bg-gradient-primary">
         <motion.div
           variants={staggerContainer(0.12)}
           initial="hidden"
@@ -113,7 +122,15 @@ export default function About() {
       </div>
 
       {/* Values */}
-      <section className="container-page py-16 lg:py-24">
+      <section className="container-page relative isolate overflow-hidden py-16 lg:py-24">
+        {/* Canang sari behind the values heading */}
+        <Decor
+          asset="canang"
+          width={260}
+          opacity={30}
+          motion="float"
+          className="-top-4 left-0"
+        />
         <SectionHeading
           eyebrow={t('about.valuesEyebrow')}
           title={t('about.valuesTitle')}
@@ -130,7 +147,7 @@ export default function About() {
             <motion.div
               key={v.key}
               variants={fadeInUp}
-              className="rounded-2xl bg-white p-6 text-center shadow-glass"
+              className="paper-sheet p-6 text-center"
             >
               <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-primary text-2xl text-white">
                 <v.icon />

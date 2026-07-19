@@ -15,6 +15,40 @@
 
   body {
     @apply bg-background text-primary-900 font-sans antialiased;
+    /* Two very wide, very low-alpha washes give the ivory an uneven, pulped
+       look without any image cost. Fixed so they don't slide during scroll. */
+    background-image:
+      radial-gradient(
+        70rem 50rem at 12% -10%,
+        rgba(214, 188, 140, 0.16),
+        transparent 60%
+      ),
+      radial-gradient(
+        60rem 45rem at 95% 15%,
+        rgba(198, 176, 138, 0.13),
+        transparent 62%
+      );
+    background-attachment: fixed;
+    /* Backstop against a decoration's negative offset widening the page.
+       `clip` rather than `hidden`: it does not create a scroll container, so
+       position:sticky (the PackageDetail booking panel) keeps working. */
+    overflow-x: clip;
+  }
+
+  /* Paper grain: one 128px tile (public/images/paper-grain.webp) repeated over
+     the whole viewport. `fixed` keeps it composited — it does not repaint on
+     scroll — and pointer-events:none keeps every control underneath clickable.
+     3.5% is enough to feel like fibre without touching text contrast. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background-image: url('/images/paper-grain.webp');
+    background-repeat: repeat;
+    background-size: 128px 128px;
+    opacity: 0.035;
   }
 }
 
@@ -22,8 +56,10 @@
   /* Premium glassmorphism surface (Apple-like): rgba(255,255,255,.65),
      blur 18px, hairline border, soft blue-tinted shadow. */
   .glass {
-    background: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    /* Tinted to the ivory stock rather than pure white, so the frosted navbar
+       and footer sit on the paper instead of floating above it. */
+    background: rgba(253, 250, 243, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.55);
     @apply backdrop-blur-glass shadow-glass;
   }
 
@@ -41,6 +77,94 @@
 
   .container-page {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ---------- Handmade paper surfaces ---------- */
+
+  /* A single sheet of stock. The lighting gradient runs off-axis (160deg) so
+     the sheet reads as lying at a slight angle to the light, and the four
+     corner radii differ by a couple of px — enough to break the machine-cut
+     look, small enough that it never registers as "wonky". */
+  .paper-sheet {
+    position: relative;
+    background-image: linear-gradient(
+      160deg,
+      #fffdf8 0%,
+      #fbf7ef 52%,
+      #f5eee0 100%
+    );
+    border: 1px solid rgba(150, 120, 78, 0.16);
+    border-radius: 20px 23px 19px 24px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 1px 2px rgba(92, 71, 38, 0.06),
+      0 18px 38px -24px rgba(92, 71, 38, 0.38);
+  }
+
+  /* Turned-down corner. Two stacked triangles: the lit underside of the fold,
+     and a soft shadow where it lifts off the sheet. Sized in em so it scales
+     with the container's own type. Only for hero/feature containers — see the
+     brief: selected cards only, not every card. */
+  .paper-fold {
+    /* Clip the sheet's own corner away so the fold looks cut, not pasted on. */
+    clip-path: polygon(
+      0 0,
+      calc(100% - 2.2em) 0,
+      100% 2.2em,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .paper-fold::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.2em;
+    height: 2.2em;
+    background-image: linear-gradient(
+      225deg,
+      #efe6d3 0%,
+      #f9f4e9 48%,
+      #fffdf8 100%
+    );
+    border-left: 1px solid rgba(150, 120, 78, 0.18);
+    border-bottom: 1px solid rgba(150, 120, 78, 0.14);
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+    box-shadow: -2px 2px 5px rgba(92, 71, 38, 0.14);
+  }
+
+  /* Deckle edge for section transitions. A repeating radial gradient used as a
+     mask nibbles a soft, irregular-looking scallop out of the band's edge.
+     Mask only — the element keeps its full box, so nothing reflows.
+     Two mask layers, unioned: the scalloped strip along the top edge, and a
+     solid block covering everything beneath it. Without the second layer the
+     mask would clip the entire band below 1.1rem. */
+  .paper-deckle-t {
+    mask-image:
+      radial-gradient(1.1rem 1.1rem at 50% 0%, transparent 98%, #000 100%),
+      linear-gradient(#000, #000);
+    mask-size:
+      2.2rem 1.1rem,
+      100% calc(100% - 1.05rem);
+    mask-repeat: repeat-x, no-repeat;
+    mask-position:
+      top left,
+      bottom left;
+  }
+
+  /* The band itself: a slightly deeper sheet laid over the page, with hairline
+     highlights top and bottom so the layers read as stacked paper. */
+  .paper-layer {
+    background-image: linear-gradient(
+      180deg,
+      #f7f1e5 0%,
+      #fbf7ef 40%,
+      #f4ecdd 100%
+    );
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid rgba(150, 120, 78, 0.13);
   }
 }
 
@@ -79,9 +203,67 @@
   animation: nav-in 0.5s ease-out both;
 }
 
+/* Balinese ornament layer (components/ui/Decor.jsx). Transform-only keyframes
+   on very long durations: the motion stays on the compositor — no layout, no
+   paint — so an ambient decoration never competes with scrolling. */
+@keyframes decor-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+@keyframes decor-sway {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+@keyframes decor-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(20px, -12px, 0);
+  }
+}
+/* Decoration wrapper: owns opacity and (optionally) the mirror transform.
+   Mobile gets the art at half strength rather than losing it entirely — the
+   full value returns from the md breakpoint up. */
+.decor-wrap {
+  opacity: calc(var(--decor-o, 0.3) * 0.5);
+}
+
+@media (min-width: 768px) {
+  .decor-wrap {
+    opacity: var(--decor-o, 0.3);
+  }
+}
+
+.decor-float {
+  animation: decor-float 19s ease-in-out infinite;
+}
+.decor-sway {
+  /* Hangs from its top edge, like a penjor pole. */
+  transform-origin: top center;
+  animation: decor-sway 23s ease-in-out infinite;
+}
+.decor-drift {
+  animation: decor-drift 27s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-fade-up,
-  .anim-nav-in {
+  .anim-nav-in,
+  .decor-float,
+  .decor-sway,
+  .decor-drift {
     animation: none;
   }
 }

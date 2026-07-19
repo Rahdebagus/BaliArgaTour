@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiMapPin, FiPhone, FiMail } from 'react-icons/fi';
 import { FaWhatsapp, FaInstagram, FaTripadvisor } from 'react-icons/fa';
+import Decor from '@/components/ui/Decor';
 import { company, whatsappLink } from '@/data/company';
 import { destinations } from '@/features/destinations';
 import { useLoc } from '@/i18n/useLoc';
@@ -30,7 +31,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-24 border-t border-primary-900/10 bg-primary-50/60">
+    <footer className="paper-layer paper-deckle-t relative isolate mt-24 overflow-hidden">
+      {/* Island silhouette closing out the page */}
+      <Decor
+        asset="baliIsland"
+        width={460}
+        opacity={30}
+        motion="float"
+        className="-right-16 bottom-10"
+      />
       <div className="container-page grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         {/* Brand */}
         <div className="glass rounded-3xl p-6">
@@ -53,7 +62,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="grid h-10 w-10 place-items-center rounded-xl border border-primary-100 bg-white text-primary transition-colors hover:bg-gradient-primary hover:text-white"
+                className="grid h-10 w-10 place-items-center rounded-xl border border-primary-100 bg-paper-50 text-primary transition-colors hover:bg-gradient-primary hover:text-white"
               >
                 <Icon />
               </a>

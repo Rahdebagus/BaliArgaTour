@@ -26,7 +26,7 @@ export default function FAQ({ items = [] }) {
           <motion.div
             key={item.id}
             variants={fadeInUp}
-            className="overflow-hidden rounded-2xl bg-white shadow-glass"
+            className="paper-sheet overflow-hidden"
           >
             <button
               onClick={() => setOpenId(isOpen ? null : item.id)}
