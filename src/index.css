@@ -201,6 +201,24 @@
 .anim-delay-3 { animation-delay: 0.34s; }
 .anim-delay-4 { animation-delay: 0.46s; }
 
+/* Hero slide caption. Re-keyed on every slide change, so this replays and the
+   caption dissolves in alongside its photograph rather than snapping to the
+   new package part-way through the crossfade. A short rise only — the box is
+   anchored to the frame and must not appear to drift outside it. */
+@keyframes hero-caption-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-caption {
+  animation: hero-caption-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Navbar entrance — CSS (not JS) so the fixed header is on-screen from the
    first HTML paint, not translated off-screen until hydration. */
 @keyframes nav-in {
@@ -273,6 +291,7 @@
 @media (prefers-reduced-motion: reduce) {
   .anim-fade-up,
   .anim-nav-in,
+  .hero-caption,
   .decor-float,
   .decor-sway,
   .decor-drift {

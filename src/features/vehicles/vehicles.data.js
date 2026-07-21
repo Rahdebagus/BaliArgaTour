@@ -1,21 +1,22 @@
-// Fleet data — drives /vehicles, the homepage fleet section, and the vehicle
-// picker inside the booking calculator.
+// Fleet data — drives /vehicles, the homepage fleet section, and the standalone
+// vehicle rental form.
 //
-// PRICING CONTRACT (see src/features/booking/pricing.js — do not diverge):
+// PRICING CONTRACT (see src/features/vehicles/vehicleRental.js):
 //
-//   `surcharge` is the UPGRADE cost in USD, PER VEHICLE, on top of the tour's
-//   duration price. It is NOT a standalone rental rate and it is NOT added a
-//   second time anywhere. The standard vehicle in the fleet carries
-//   surcharge: 0 — selecting it costs nothing extra, which is why the
-//   calculator never needs a "base vehicle" line of its own.
+//   `dailyRate` is the STANDALONE HIRE price in USD for one vehicle for one
+//   day, driver and petrol included. Vehicle rental is its own product: it is
+//   never added to a tour quote, and a tour quote never adds a vehicle charge
+//   of its own, because the tour's duration price already covers the car and
+//   driver. The two prices live in separate files and separate forms so they
+//   cannot be summed by accident.
 //
-//   `surcharge: CONTACT_FOR_PRICE` (null) means there is no fixed public price.
-//   Such a vehicle is excluded from the numeric total and switches the whole
-//   quote to "final price requires confirmation" — it must never be coerced
-//   to 0, which would silently under-quote the guest.
+//   `dailyRate: CONTACT_FOR_PRICE` (null) means there is no fixed public price.
+//   Such a vehicle shows "Contact for Price" and its rental estimate is
+//   suppressed rather than computed — it must never be coerced to 0, which
+//   would silently under-quote the guest.
 //
-// `seats` is the maximum passenger capacity per unit and drives the "you need
-// more than one vehicle" hint in the booking form.
+// `seats` is the maximum passenger capacity per unit and drives the capacity
+// hint in the rental form.
 //
 // Bilingual fields use the { id, en } shape and are read via loc() (docs/08).
 import { CONTACT_FOR_PRICE } from '@/config/pricing';
@@ -33,7 +34,7 @@ export const vehicles = [
     luggage: 3,
     transmission: 'Automatic',
     ac: true,
-    surcharge: CONTACT_FOR_PRICE,
+    dailyRate: CONTACT_FOR_PRICE,
     image: img('toyota-veloz-2024'),
     popular: false,
     description: {
@@ -55,7 +56,7 @@ export const vehicles = [
     luggage: 4,
     transmission: 'Automatic',
     ac: true,
-    surcharge: 85,
+    dailyRate: 85,
     image: img('toyota-zenix-2024'),
     popular: true,
     description: {
@@ -77,7 +78,7 @@ export const vehicles = [
     luggage: 8,
     transmission: 'Manual',
     ac: true,
-    surcharge: 95,
+    dailyRate: 95,
     image: img('toyota-hiace-2023'),
     popular: true,
     description: {
@@ -99,7 +100,7 @@ export const vehicles = [
     luggage: 10,
     transmission: 'Manual',
     ac: true,
-    surcharge: 95,
+    dailyRate: 95,
     image: img('toyota-elf-2023'),
     popular: false,
     description: {
@@ -113,11 +114,5 @@ export const vehicles = [
   },
 ];
 
-/** Look up one vehicle by id — used by the booking calculator. */
+/** Look up one vehicle by id — used by the rental form. */
 export const getVehicle = (id) => vehicles.find((v) => v.id === id);
-
-/** Cheapest priced vehicle, used as the picker's default selection. */
-export const defaultVehicle =
-  vehicles
-    .filter((v) => typeof v.surcharge === 'number')
-    .sort((a, b) => a.surcharge - b.surcharge)[0] ?? vehicles[0];

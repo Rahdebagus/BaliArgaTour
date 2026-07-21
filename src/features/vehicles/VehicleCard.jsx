@@ -14,17 +14,16 @@ const CARD_SIZES = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw';
 /**
  * Fleet card for the /vehicles page and the homepage fleet row.
  *
- * `onSelect` switches it into picker mode: the CTA becomes a Select button and
- * the selected card is outlined. Without it the card is informational and the
- * CTA opens a WhatsApp enquiry.
+ * `onSelect` switches it into booking mode: the CTA opens the standalone hire
+ * form and the selected card is outlined. Without it the card is informational
+ * and the CTA opens a WhatsApp enquiry.
  *
- * The price shown is the tour upgrade surcharge, labelled as such — see the
- * pricing contract in vehicles.data.js.
+ * The price shown is the standalone daily hire rate — see the pricing contract
+ * in vehicles.data.js. It is not a tour price and is never added to one.
  */
 function VehicleCard({ vehicle, onSelect, selected = false }) {
   const { t } = useTranslation();
   const loc = useLoc();
-  const included = vehicle.surcharge === 0;
 
   return (
     // flex column + h-full so the CTA row is pinned to the bottom and every
@@ -88,15 +87,9 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
         <div className="mt-auto flex items-end justify-between gap-3 border-t border-primary-100 pt-4">
           <div>
             <span className="block text-xs text-primary-700/60">
-              {t('booking.upgradeLabel')}
+              {t('vehicleBooking.rateLabel')}
             </span>
-            {included ? (
-              <span className="font-display text-lg font-bold text-green-700">
-                {t('booking.noSurcharge')}
-              </span>
-            ) : (
-              <Price usd={vehicle.surcharge} size="md" showIdr={false} />
-            )}
+            <Price usd={vehicle.dailyRate} size="md" showIdr={false} />
           </div>
 
           {onSelect ? (
@@ -105,14 +98,14 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
               variant={selected ? 'primary' : 'outline'}
               onClick={() => onSelect(vehicle)}
             >
-              {selected ? t('booking.selected') : t('booking.select')}
+              {selected ? t('booking.selected') : t('vehicleBooking.bookVehicle')}
             </Button>
           ) : (
             <Button
               size="sm"
               variant="secondary"
               href={whatsappLink(
-                t('booking.vehicleEnquiry', {
+                t('vehicleBooking.enquiry', {
                   name: `${vehicle.name} ${vehicle.year}`,
                 })
               )}

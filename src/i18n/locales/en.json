@@ -21,7 +21,32 @@
     "seats": "seats",
     "luggage": "luggage",
     "popular": "Popular",
-    "explore": "Explore"
+    "explore": "Explore",
+    "contactForQuote": "Contact us for a quote"
+  },
+  "packages": {
+    "perVehicle": "Price per private vehicle",
+    "perPerson": "Price per person",
+    "basisVehicle": "private vehicle",
+    "basisPerson": "person",
+    "stops": "{{count}} stop",
+    "stops_other": "{{count}} stops",
+    "exploreTour": "Explore This Tour",
+    "planOnWhatsapp": "Plan This Tour on WhatsApp",
+    "checkAvailability": "Check Availability",
+    "bookExperience": "Book Your Bali Experience",
+    "startingTime": "Starting time",
+    "additionalHour": "Additional hour",
+    "additionalHourValue": "USD {{amount}} per hour",
+    "minGuests": "Minimum {{count}} guests",
+    "maxGuests": "Maximum {{count}} guests",
+    "advanceBooking": "Book at least {{count}} days in advance",
+    "placesToVisit": "Places to Visit",
+    "chooseExperience": "Choose Your Experience",
+    "requiredActivity": "Required",
+    "optionalActivity": "Optional",
+    "included": "Included in this option",
+    "flexibility": "Flexible Private Tour"
   },
   "hero": {
     "eyebrow": "Welcome to Bali",
@@ -31,7 +56,8 @@
     "tagline": "Experience the Island Like Never Before",
     "ctaPackages": "View Packages",
     "ctaWhatsapp": "WhatsApp",
-    "ctaGallery": "Gallery"
+    "ctaGallery": "Gallery",
+    "priceFrom": "From {{price}} / {{basis}}"
   },
   "home": {
     "packagesEyebrow": "Popular Packages",
@@ -130,9 +156,7 @@
   },
   "vehiclesPage": {
     "title": "Transport & Fleet Rental",
-    "subtitle": "Comfortable, clean, well-maintained vehicles with professional drivers.",
-    "selectedTitle": "Selected: {{name}}",
-    "selectedHint": "Now choose which tour to use it on — your vehicle choice carries over to the booking form."
+    "subtitle": "Comfortable, clean, well-maintained vehicles with professional drivers."
   },
   "galleryPage": {
     "title": "Photo Gallery",
@@ -221,21 +245,12 @@
   },
   "booking": {
     "durationTitle": "Choose your duration",
-    "durationHint": "Counted from hotel pick-up to drop-off. Priced per vehicle, not per person.",
+    "durationHint": "Counted from hotel pick-up to drop-off. One price for the whole party, not per person.",
     "hours": "hours",
-    "perVehicle": "per vehicle",
     "perGuest": "per guest",
     "fromHours": "From {{hours}} hours",
-    "vehicleTitle": "Choose your vehicle",
-    "vehicleHint": "The amount shown is the upgrade on top of the tour price, charged once per vehicle.",
-    "upgradeLabel": "Tour upgrade",
-    "upgradePerVehicle": "upgrade, per vehicle",
-    "noSurcharge": "No surcharge",
     "upToGuests": "Up to {{count}} guests",
-    "select": "Select",
     "selected": "Selected",
-    "vehicleEnquiry": "Hello Bali Arga Tour, I would like to ask about the {{name}} for a tour.",
-    "capacityWarning": "{{guests}} guests will not fit in {{count}} vehicle(s) of this type. You need about {{needed}}.",
     "activitiesTitle": "Add activities",
     "activitiesHint": "Optional. Paid activities are charged per guest, so each one is multiplied by your {{count}} guests.",
     "included": "Included",
@@ -243,7 +258,6 @@
     "formTitle": "Your details",
     "formHint": "We only use these to confirm your booking over WhatsApp.",
     "guests": "Number of guests",
-    "vehicleCount": "Number of vehicles",
     "fullName": "Full name",
     "fullNamePlaceholder": "e.g. Made Wirawan",
     "whatsappNumber": "WhatsApp number",
@@ -280,8 +294,6 @@
       "date": "Tour date",
       "pickup": "Pick-up location",
       "guests": "Number of guests",
-      "vehicleCount": "Number of vehicles",
-      "vehicle": "Vehicle",
       "places": "Places to visit",
       "activities": "Selected activities",
       "breakdown": "Price breakdown",
@@ -291,8 +303,55 @@
       "note": "Additional message",
       "none": "None",
       "guestsUnit": "guest(s)",
-      "vehiclesUnit": "vehicle(s)",
       "disclaimer": "I understand that the final availability and price must be confirmed by Bali Arga Tour."
+    },
+    "perTour": "per tour, vehicle included",
+    "vehicleIncluded": "Private air-conditioned vehicle, driver, petrol, and parking are included in the tour price."
+  },
+  "vehicleBooking": {
+    "rateLabel": "Rental rate",
+    "bookVehicle": "Book Vehicle",
+    "selectedVehicle": "Selected vehicle",
+    "hint": "Vehicle rental only, with driver. Tours are booked separately and already include their vehicle.",
+    "pickupDate": "Pick-up date",
+    "pickupTime": "Pick-up time",
+    "pickupLocation": "Pick-up location",
+    "destination": "Destination",
+    "destinationPlaceholder": "e.g. Ubud, Canggu, Ngurah Rai Airport",
+    "duration": "Rental duration",
+    "durationUnit": "days",
+    "passengers": "Number of passengers",
+    "messagePlaceholder": "Anything else we should know — child seats, luggage, flight times…",
+    "capacityWarning": "{{passengers}} passengers will not fit in this vehicle, which seats {{seats}}. Let us know and we will arrange a second one.",
+    "estimatedPrice": "Estimated price",
+    "rateBreakdown": "{{rate}} per day × {{days}} days",
+    "bookOnWhatsapp": "Request on WhatsApp",
+    "enquiry": "Hello Bali Arga Tour, I would like to ask about renting the {{name}}.",
+    "fieldNames": {
+      "name": "full name",
+      "phone": "WhatsApp number",
+      "date": "pick-up date",
+      "time": "pick-up time",
+      "pickup": "pick-up location",
+      "destination": "destination"
+    },
+    "wa": {
+      "greeting": "Hello Bali Arga Tour,",
+      "intro": "I would like to book a vehicle.",
+      "vehicle": "Vehicle",
+      "date": "Date",
+      "time": "Time",
+      "pickup": "Pick-up location",
+      "destination": "Destination",
+      "duration": "Rental duration",
+      "dayCount": "{{days}} day(s)",
+      "passengers": "Number of passengers",
+      "price": "Estimated price",
+      "estimateNote": "estimate, to be confirmed",
+      "name": "Name",
+      "phone": "WhatsApp number",
+      "note": "Additional message",
+      "closing": "Please confirm availability and the final price. Thank you."
     }
   }
 }

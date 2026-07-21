@@ -1,4 +1,4 @@
-import { useParams, useSearchParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiArrowLeft, FiMapPin, FiStar, FiCheckCircle } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -10,7 +10,6 @@ import {
   useBooking,
   DurationPicker,
   ActivityPicker,
-  VehiclePicker,
   BookingForm,
   BookingSummary,
 } from '@/features/booking';
@@ -52,12 +51,7 @@ export default function DestinationDetail() {
     { initialData: destinationsService.getBySlugSync(slug) }
   );
 
-  // ?vehicle=<id> carries a choice made on the /vehicles page into this form,
-  // so picking a vehicle there is not thrown away on arrival.
-  const [searchParams] = useSearchParams();
-  const booking = useBooking(destination, {
-    initialVehicleId: searchParams.get('vehicle'),
-  });
+  const booking = useBooking(destination);
 
   if (loading) return <Loader />;
 
@@ -88,9 +82,7 @@ export default function DestinationDetail() {
     quote: booking.quote,
     destination,
     duration: booking.duration,
-    vehicle: booking.vehicle,
     guests: booking.guests,
-    vehicleCount: booking.vehicleCount,
     isComplete: booking.isComplete,
     missingFields: booking.missingFields,
     whatsappUrl: booking.whatsappUrl,
@@ -190,17 +182,6 @@ export default function DestinationDetail() {
               </Step>
 
               <Step index="02">
-                <VehiclePicker
-                  vehicles={booking.fleet}
-                  value={booking.vehicleId}
-                  onChange={booking.setVehicleId}
-                  guests={booking.guests}
-                  vehicleCount={booking.vehicleCount}
-                  capacityShortfall={booking.capacityShortfall}
-                />
-              </Step>
-
-              <Step index="03">
                 <ActivityPicker
                   activities={booking.availableActivities}
                   selectedIds={booking.activityIds}
@@ -209,14 +190,12 @@ export default function DestinationDetail() {
                 />
               </Step>
 
-              <Step index="04">
+              <Step index="03">
                 <BookingForm
                   form={booking.form}
                   setField={booking.setField}
                   guests={booking.guests}
                   setGuests={booking.setGuests}
-                  vehicleCount={booking.vehicleCount}
-                  setVehicleCount={booking.setVehicleCount}
                 />
               </Step>
 

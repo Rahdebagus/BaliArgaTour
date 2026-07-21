@@ -59,7 +59,7 @@ export default function DurationPicker({ durations, value, onChange }) {
                 <Price usd={d.price} size="md" />
               </span>
               <span className="mt-1 block text-xs text-primary-700/60">
-                {t('booking.perVehicle')}
+                {t('booking.perTour')}
               </span>
             </label>
           );

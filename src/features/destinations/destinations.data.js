@@ -15,11 +15,14 @@
 // `bookable`.
 //
 // PRICING CONTRACT (see src/features/booking/pricing.js — do not diverge):
-//   durations[].price   USD, charged PER VEHICLE.
+//   durations[].price   USD, charged ONCE for the whole party. This figure
+//                       ALREADY INCLUDES the private air-conditioned vehicle,
+//                       driver, petrol and parking.
 //   activities[].price  USD, charged PER GUEST. 0 means genuinely included.
-//   Vehicle cost is NOT here — it is the surcharge on the selected vehicle in
-//   features/vehicles/vehicles.data.js, also per vehicle. One vehicle charge
-//   only; never add a second one here.
+//   There is no vehicle field here and there must never be one. Standalone
+//   vehicle hire is a separate product in features/vehicles — a different form,
+//   a different price, a different WhatsApp message. Adding a vehicle charge to
+//   a tour would bill the car twice.
 //
 // Bilingual fields use the { id, en } shape and are read via loc() (docs/08).
 const img = (seed) => `/images/${seed}.webp`;

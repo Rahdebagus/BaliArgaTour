@@ -196,7 +196,8 @@ export default function Home() {
             title={t('story.title')}
             lead={t('story.lead')}
           />
-          <PolaroidStory items={gallery || []} />
+          {/* No data prop: the board reads src/data/postcards.js directly. */}
+          <PolaroidStory />
         </div>
       </section>
 

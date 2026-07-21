@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { FaWhatsapp } from 'react-icons/fa';
-import { FiInfo, FiAlertCircle } from 'react-icons/fi';
+import { FiInfo, FiAlertCircle, FiTruck } from 'react-icons/fi';
 import { useLoc } from '@/i18n/useLoc';
 import { formatCurrency, usdToIdrLabel } from '@/utils/format';
 import { PRICE_DISCLAIMER, QUOTE_ON_REQUEST_NOTE } from '@/data/policies';
@@ -20,9 +20,7 @@ export default function BookingSummary({
   quote,
   destination,
   duration,
-  vehicle,
   guests,
-  vehicleCount,
   isComplete,
   missingFields,
   whatsappUrl,
@@ -30,11 +28,6 @@ export default function BookingSummary({
 }) {
   const { t } = useTranslation();
   const loc = useLoc();
-
-  const unitLabel = (line) =>
-    line.per === 'guest'
-      ? t('booking.wa.guestsUnit')
-      : t('booking.wa.vehiclesUnit');
 
   return (
     <div
@@ -58,22 +51,17 @@ export default function BookingSummary({
           </dd>
         </div>
         <div className="flex justify-between gap-4">
-          <dt className="text-primary-700/60">{t('booking.wa.vehicle')}</dt>
-          <dd className="text-right font-semibold text-primary-900">
-            {vehicle ? `${vehicle.name} ${vehicle.year}` : '—'}
-          </dd>
-        </div>
-        <div className="flex justify-between gap-4">
           <dt className="text-primary-700/60">{t('booking.wa.guests')}</dt>
           <dd className="text-right font-semibold text-primary-900">{guests}</dd>
         </div>
-        <div className="flex justify-between gap-4">
-          <dt className="text-primary-700/60">{t('booking.wa.vehicleCount')}</dt>
-          <dd className="text-right font-semibold text-primary-900">
-            {vehicleCount}
-          </dd>
-        </div>
       </dl>
+
+      {/* Stated above the breakdown, not below it: the guest should know the
+          car is already paid for before they read the total, not after. */}
+      <p className="mt-4 flex items-start gap-2 rounded-xl border border-green-200 bg-green-50 p-3 text-xs leading-relaxed text-green-900">
+        <FiTruck className="mt-0.5 shrink-0" aria-hidden />
+        {t('booking.vehicleIncluded')}
+      </p>
 
       {/* Breakdown — every charged line, with the arithmetic visible. */}
       <ul className="space-y-2.5 border-b border-primary-100 py-4 text-sm">
@@ -81,10 +69,13 @@ export default function BookingSummary({
           <li key={line.key} className="flex justify-between gap-3">
             <span className="min-w-0 flex-1">
               <span className="block text-primary-800">{line.label}</span>
-              {!line.unpriced && line.unitPrice > 0 && (
+              {/* The "× N guests" hint only appears on per-guest lines. The
+                  duration line is a single charge for the whole party, and a
+                  "× 1" next to it would imply it could be multiplied. */}
+              {!line.unpriced && line.unitPrice > 0 && line.per === 'guest' && (
                 <span className="block text-xs text-primary-700/55">
                   {formatCurrency(line.unitPrice, 'USD', 'en-US')} ×{' '}
-                  {line.quantity} {unitLabel(line)}
+                  {line.quantity} {t('booking.wa.guestsUnit')}
                 </span>
               )}
             </span>

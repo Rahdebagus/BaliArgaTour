@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 import { company } from '../src/data/company.js';
-import { packages } from '../src/features/packages/packages.data.js';
+import { tourPackages } from '../src/data/tourPackages.js';
 import { destinations } from '../src/features/destinations/destinations.data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -24,7 +24,7 @@ const staticRoutes = [
 ];
 
 const dynamicRoutes = [
-  ...packages.map((p) => [`/packages/${p.slug}`, 'monthly', '0.8']),
+  ...tourPackages.map((p) => [`/packages/${p.slug}`, 'monthly', '0.8']),
   // Bookable tours outrank showcase destinations: they are the pages that can
   // actually convert, so they get the higher priority.
   ...destinations.map((d) => [

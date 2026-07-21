@@ -17,18 +17,24 @@ const money = (usd) =>
 
 /**
  * One breakdown row, e.g.
- *   - 8 Hours — Full Day: $65 x 2 vehicles = $130 (≈ Rp 2.119.000)
+ *   - Bali Swing: $25 x 4 guest(s) = $100 (≈ Rp 1.630.000)
+ *   - 8 Hours — Full Day: $65 (≈ Rp 1.059.500)
+ *
+ * Per-tour lines print the bare amount: "x 1 tour = $65" is arithmetic the
+ * guest did not ask to see, and it invites the reading that a second one could
+ * be added.
  */
 function formatLine(line, t) {
-  const unit = line.per === 'guest' ? t('booking.wa.guestsUnit') : t('booking.wa.vehiclesUnit');
-
   if (line.unpriced) {
     return `- ${line.label}: ${t('booking.contactForPrice')}`;
   }
   if (line.unitPrice === 0) {
     return `- ${line.label}: ${t('booking.included')}`;
   }
-  return `- ${line.label}: ${money(line.unitPrice)} x ${line.quantity} ${unit} = ${money(line.subtotal)}`;
+  if (line.per === 'tour') {
+    return `- ${line.label}: ${money(line.subtotal)}`;
+  }
+  return `- ${line.label}: ${money(line.unitPrice)} x ${line.quantity} ${t('booking.wa.guestsUnit')} = ${money(line.subtotal)}`;
 }
 
 /**
@@ -37,12 +43,10 @@ function formatLine(line, t) {
  * @param {object}   params
  * @param {object}   params.destination
  * @param {object}   params.duration
- * @param {object}   params.vehicle
  * @param {object[]} params.activities  selected activity objects
  * @param {object}   params.quote       result of calculateQuote()
  * @param {object}   params.form        { name, phone, date, pickup, message }
  * @param {number}   params.guests
- * @param {number}   params.vehicleCount
  * @param {function} params.t           i18next translator
  * @param {function} params.loc         { id, en } localizer
  * @returns {string} plain (un-encoded) message text
@@ -50,12 +54,10 @@ function formatLine(line, t) {
 export function buildBookingMessage({
   destination,
   duration,
-  vehicle,
   activities = [],
   quote,
   form,
   guests,
-  vehicleCount,
   t,
   loc,
 }) {
@@ -87,8 +89,6 @@ export function buildBookingMessage({
     `${t('booking.wa.date')}: ${form.date || '-'}`,
     `${t('booking.wa.pickup')}: ${form.pickup || '-'}`,
     `${t('booking.wa.guests')}: ${guests}`,
-    `${t('booking.wa.vehicleCount')}: ${vehicleCount}`,
-    `${t('booking.wa.vehicle')}: ${vehicle ? `${vehicle.name} ${vehicle.year}` : '-'}`,
     `${t('booking.wa.places')}: ${places || '-'}`,
     `${t('booking.wa.activities')}: ${activityText}`,
     '',
@@ -96,6 +96,9 @@ export function buildBookingMessage({
     breakdown,
     '',
     `${t('booking.wa.total')}: ${totalText}`,
+    // Restated in the message itself, not only on the page: the guest keeps the
+    // WhatsApp thread, and it should answer "is the car extra?" on its own.
+    t('booking.vehicleIncluded'),
     '',
     `${t('booking.wa.name')}: ${form.name}`,
     `${t('booking.wa.phone')}: ${form.phone}`,

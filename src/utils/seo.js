@@ -4,6 +4,7 @@
 import { company } from '@/data/company';
 import { localize } from '@/i18n/useLoc';
 import { SEO_SITE_URL } from '@/config/site';
+import { headlinePrice } from '@/features/packages/packagePricing';
 
 export const SITE = {
   // Canonical production domain — SEO surfaces only (canonical, OG, JSON-LD).
@@ -119,24 +120,58 @@ export const destinationSchema = (destination, lang) => {
   };
 };
 
-/** Tour package -> Product/Trip schema with offer + rating. */
-export const tourSchema = (pkg, lang) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: pkg.title,
-  description: localize(pkg.shortDescription, lang),
-  image: absoluteUrl(pkg.image),
-  brand: { '@type': 'Brand', name: SITE.name },
-  offers: {
-    '@type': 'Offer',
-    price: pkg.price,
-    priceCurrency: pkg.currency,
+/**
+ * Tour package -> TouristTrip schema.
+ *
+ * Deliberately carries NO aggregateRating. The previous version emitted a
+ * rating and review count from hard-coded data-file fields, which is a
+ * fabricated review signal — against Google's structured-data policy and
+ * against the brief. Ratings return here only when they come from real,
+ * attributable reviews.
+ *
+ * IDR and USD are separate published prices rather than conversions of one
+ * another, so they are emitted as two distinct Offers instead of being folded
+ * into a single figure. A currency with no published price contributes no
+ * offer at all — quoting an unpublished price would be a false listing.
+ */
+export const tourSchema = (pkg, lang) => {
+  const { idr, usd, from } = headlinePrice(pkg);
+  const url = absoluteUrl(`/packages/${pkg.slug}`);
+
+  // "From" prices describe a range of distinct products, so they are typed as
+  // AggregateOffer with lowPrice rather than as a fixed-price Offer.
+  const offer = (price, currency) => ({
+    '@type': from ? 'AggregateOffer' : 'Offer',
+    ...(from ? { lowPrice: price } : { price }),
+    priceCurrency: currency,
     availability: 'https://schema.org/InStock',
-    url: absoluteUrl(`/packages/${pkg.slug}`),
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: pkg.rating,
-    reviewCount: pkg.reviews,
-  },
-});
+    url,
+  });
+
+  const offers = [
+    ...(typeof idr === 'number' ? [offer(idr, 'IDR')] : []),
+    ...(typeof usd === 'number' ? [offer(usd, 'USD')] : []),
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: pkg.title,
+    description: pkg.seo?.description ?? localize(pkg.shortDescription, lang),
+    image: absoluteUrl(pkg.image?.webp ?? SITE.defaultImage),
+    url,
+    provider: { '@type': 'TravelAgency', name: SITE.name },
+    touristType: pkg.category,
+    ...(pkg.places?.length && {
+      itinerary: {
+        '@type': 'ItemList',
+        itemListElement: pkg.places.map((place, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: place,
+        })),
+      },
+    }),
+    ...(offers.length && { offers }),
+  };
+};

@@ -5,22 +5,64 @@ import { FiArrowRight } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Head } from 'vite-react-ssg';
 import Button from './Button';
-import OptimizedImage, { preloadProps } from './OptimizedImage';
+import { preloadProps } from './OptimizedImage';
+import HeroSlideshow from './HeroSlideshow';
+import { packagesService } from '@/features/packages';
+import { PER_VEHICLE } from '@/data/tourPackages';
 import { company, whatsappLink } from '@/data/company';
+import { formatIdr, formatUsd } from '@/utils/format';
 import { useLoc } from '@/i18n/useLoc';
+
+const IMAGE_SIZES = '(min-width: 1024px) 44vw, 92vw';
+
+/**
+ * One-line price caption for the slide overlay, e.g.
+ * "From Rp 800.000 / private vehicle".
+ *
+ * Shows a SINGLE currency rather than the listing card's "Rp … · USD …" pair:
+ * the caption sits on a photograph in a small box and has to stay legible.
+ * Rupiah is preferred because every package publishes one, USD is the fallback
+ * for any that do not, and a package with neither reads "contact us" — never a
+ * zero, and never one currency converted from the other.
+ *
+ * The basis is always stated, so a per-vehicle price cannot be misread as
+ * per-guest at a glance.
+ */
+const priceCaption = (price, t) => {
+  const amount = formatIdr(price?.idr) ?? formatUsd(price?.usd);
+  if (!amount) return t('common.contactForQuote');
+
+  return t('hero.priceFrom', {
+    price: amount,
+    basis:
+      price.unit === PER_VEHICLE
+        ? t('packages.basisVehicle')
+        : t('packages.basisPerson'),
+  });
+};
 
 /**
  * Editorial split hero (NASA-inspired): huge condensed typography on white
  * left, large rounded imagery over soft blue abstract shapes right.
  * Entrance uses CSS animation so the LCP headline paints with the HTML
  * (docs/09, docs/10); framer drives only the subtle scroll drift.
+ *
+ * The imagery rotates through the packages flagged `featuredInHero` — read
+ * synchronously so the first slide is in the prerendered HTML, exactly where
+ * the single static image used to be.
  */
-export default function Hero({
-  bgImage = '/images/hero-bali.webp',
-}) {
+export default function Hero({ slides }) {
   const { t } = useTranslation();
   const loc = useLoc();
   const subtitle = loc(company.description);
+
+  // The caption is attached to each slide here rather than inside the
+  // slideshow so the slideshow stays a presentational component and the
+  // wording goes through the same translation function as the rest of the page.
+  const heroSlides = (slides ?? packagesService.getHeroSlidesSync()).map(
+    (slide) => ({ ...slide, priceLabel: priceCaption(slide.price, t) })
+  );
+  const firstImage = heroSlides[0]?.image;
 
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -35,10 +77,18 @@ export default function Hero({
       ref={ref}
       className="relative overflow-hidden bg-background pb-24 pt-32 lg:pb-32 lg:pt-40"
     >
-      {/* Preload the hero visual before the JS bundle executes */}
-      <Head>
-        <link rel="preload" as="image" fetchpriority="high" {...preloadProps(bgImage, '(min-width: 1024px) 44vw, 92vw')} />
-      </Head>
+      {/* Preload the first slide before the JS bundle executes. Only the first:
+          the rest are mounted after paint and must not compete with the LCP. */}
+      {firstImage && (
+        <Head>
+          <link
+            rel="preload"
+            as="image"
+            fetchpriority="high"
+            {...preloadProps(firstImage, IMAGE_SIZES)}
+          />
+        </Head>
+      )}
 
       <div className="container-page grid items-center gap-14 lg:grid-cols-12">
         {/* Left — editorial masthead */}
@@ -90,24 +140,21 @@ export default function Hero({
           </motion.div>
 
           <motion.div style={{ y: imgY }} className="anim-fade-up anim-delay-2 relative">
-            <OptimizedImage
-              src={bgImage}
-              alt="Bali"
-              priority
-              width={1200}
-              height={675}
-              sizes="(min-width: 1024px) 44vw, 92vw"
-              className="aspect-[4/5] w-full rounded-3xl object-cover shadow-glass-lg sm:aspect-[16/11] lg:aspect-[4/5]"
+            {/* The aspect ratio lives on this wrapper, not on the images, so
+                the box is sized before anything decodes and never resizes as
+                slides swap.
+
+                The slide caption used to be a chip pinned at `-bottom-6`,
+                outside the picture. Hanging it below the frame put it in the
+                flow of the section underneath, where the parallax transform
+                dragged it further down on scroll and it collided with the next
+                section. It now lives inside the image, so there is nothing left
+                to overlap and no negative offset to keep in balance. */}
+            <HeroSlideshow
+              slides={heroSlides}
+              sizes={IMAGE_SIZES}
+              className="aspect-[4/5] w-full rounded-3xl shadow-glass-lg sm:aspect-[16/11] lg:aspect-[4/5]"
             />
-            {/* floating glass stat chip */}
-            <div className="glass absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl px-5 py-3">
-              <span className="font-editorial text-3xl font-bold text-primary">
-                {company.stats[0].value.toLocaleString()}+
-              </span>
-              <span className="max-w-[8rem] text-xs font-medium leading-tight text-primary-800/80">
-                {loc(company.stats[0].label)}
-              </span>
-            </div>
           </motion.div>
         </div>
       </div>

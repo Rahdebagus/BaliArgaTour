@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLoc } from '@/i18n/useLoc';
 import { LIMITS } from '@/config/pricing';
-import { vehicles as fleet, defaultVehicle } from '@/features/vehicles';
 import { calculateQuote } from './pricing';
 import { buildBookingMessage, bookingWhatsappLink } from './whatsappMessage';
 
@@ -22,14 +21,18 @@ export const todayIso = () => new Date().toISOString().split('T')[0];
 
 /**
  * Owns the entire booking interaction for one destination: selections, guest
- * counts, form fields, the live quote, validation, and the finished WhatsApp
+ * count, form fields, the live quote, validation, and the finished WhatsApp
  * link.
  *
  * It lives in a hook rather than the page component so the sticky desktop
  * summary and the inline mobile summary read from one state — two summaries
  * showing different totals would be worse than having no summary at all.
+ *
+ * Nothing here touches the fleet. The tour price already includes the private
+ * vehicle and driver, so there is no vehicle to select and no vehicle count to
+ * multiply by; standalone hire lives entirely in the vehicles feature.
  */
-export function useBooking(destination, { initialVehicleId } = {}) {
+export function useBooking(destination) {
   const { t } = useTranslation();
   const loc = useLoc();
 
@@ -43,22 +46,11 @@ export function useBooking(destination, { initialVehicleId } = {}) {
   );
 
   const [durationId, setDurationId] = useState(durations[0]?.id ?? '');
-  // A vehicle chosen on /vehicles arrives as ?vehicle=<id>. Validated against
-  // the fleet before use, so a hand-edited URL falls back to the default rather
-  // than leaving the picker with nothing selected.
-  const [vehicleId, setVehicleId] = useState(
-    () =>
-      fleet.find((v) => v.id === initialVehicleId)?.id ??
-      defaultVehicle?.id ??
-      ''
-  );
   const [activityIds, setActivityIds] = useState([]);
   const [guests, setGuests] = useState(2);
-  const [vehicleCount, setVehicleCount] = useState(1);
   const [form, setForm] = useState(EMPTY_FORM);
 
   const duration = durations.find((d) => d.id === durationId);
-  const vehicle = fleet.find((v) => v.id === vehicleId);
 
   // The destination can arrive after mount (a real backend behind useFetch, or
   // simply a different slug), at which point the durationId held in state
@@ -96,48 +88,30 @@ export function useBooking(destination, { initialVehicleId } = {}) {
   const setField = (key, value) => setForm((prev) => ({ ...prev, [key]: value }));
 
   const quote = useMemo(
-    () =>
-      calculateQuote({
-        duration,
-        vehicle,
-        activities,
-        guests,
-        vehicleCount,
-        loc,
-      }),
+    () => calculateQuote({ duration, activities, guests, loc }),
     // `loc` is a fresh closure each render; the language it captures is what
     // matters, and a language change re-renders the page anyway.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [duration, vehicle, activities, guests, vehicleCount]
+    [duration, activities, guests]
   );
 
-  // The vehicle picker's capacity hint. Advisory only — we never silently
-  // change the guest's numbers, we just tell them what we noticed.
-  const capacityShortfall =
-    vehicle && guests > vehicle.seats * vehicleCount
-      ? Math.ceil(guests / vehicle.seats) - vehicleCount
-      : 0;
-
   const missingFields = REQUIRED_FIELDS.filter((key) => !form[key].trim());
-  const isComplete =
-    missingFields.length === 0 && Boolean(duration) && Boolean(vehicle);
+  const isComplete = missingFields.length === 0 && Boolean(duration);
 
   const message = useMemo(
     () =>
       buildBookingMessage({
         destination,
         duration,
-        vehicle,
         activities,
         quote,
         form,
         guests,
-        vehicleCount,
         t,
         loc,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [destination, duration, vehicle, activities, quote, form, guests, vehicleCount]
+    [destination, duration, activities, quote, form, guests]
   );
 
   return {
@@ -146,10 +120,6 @@ export function useBooking(destination, { initialVehicleId } = {}) {
     setDurationId,
     duration,
     durations,
-    vehicleId,
-    setVehicleId,
-    vehicle,
-    fleet,
     availableActivities,
     activityIds,
     activities,
@@ -157,9 +127,6 @@ export function useBooking(destination, { initialVehicleId } = {}) {
     // counts
     guests,
     setGuests: (v) => setGuests(clamp(v, LIMITS.guests)),
-    vehicleCount,
-    setVehicleCount: (v) => setVehicleCount(clamp(v, LIMITS.vehicles)),
-    capacityShortfall,
     // form
     form,
     setField,

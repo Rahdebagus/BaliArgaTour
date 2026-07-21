@@ -73,14 +73,7 @@ function Stepper({ label, icon, value, onChange, min, max, id }) {
  * wa.me link from the summary panel, and nesting a form here would let Enter in
  * a text field trigger a navigation the guest never asked for.
  */
-export default function BookingForm({
-  form,
-  setField,
-  guests,
-  setGuests,
-  vehicleCount,
-  setVehicleCount,
-}) {
+export default function BookingForm({ form, setField, guests, setGuests }) {
   const { t } = useTranslation();
 
   return (
@@ -102,15 +95,6 @@ export default function BookingForm({
           onChange={setGuests}
           min={LIMITS.guests.min}
           max={LIMITS.guests.max}
-        />
-        <Stepper
-          id="booking-vehicles"
-          icon={FiMapPin}
-          label={t('booking.vehicleCount')}
-          value={vehicleCount}
-          onChange={setVehicleCount}
-          min={LIMITS.vehicles.min}
-          max={LIMITS.vehicles.max}
         />
 
         <Field
