@@ -107,6 +107,7 @@ export const tourPackages = [
     slug: 'ulun-danu-jatiluwih-tanah-lot-tour',
     title: 'Ulun Danu Beratan, Jatiluwih & Tanah Lot Private Tour',
     category: 'Nature',
+    destinations: ['tanah-lot'],
     seo: {
       title: 'Ulun Danu Beratan, Jatiluwih & Tanah Lot Private Tour',
       description:
@@ -136,8 +137,8 @@ export const tourPackages = [
     includes: PRIVATE_CAR_INCLUDES,
     excludes: PRIVATE_CAR_EXCLUDES,
     image: {
-      webp: '/images/tanahlot.webp',
-      avif: '/images/tanahlot.avif',
+      webp: '/images/ulun-danu-batur.webp',
+      avif: '/images/ulun-danu-batur.avif',
     },
     alt: 'Ulun Danu Beratan temple on Lake Beratan, Bali',
     imageBrief: {
@@ -153,6 +154,7 @@ export const tourPackages = [
     slug: 'mount-batur-sunrise-jeep-tour',
     title: 'Mount Batur Sunrise Jeep & Natural Hot Spring Tour',
     category: 'Adventure',
+    destinations: ['kintamani'],
     seo: {
       title: 'Mount Batur Sunrise Jeep & Natural Hot Spring Tour',
       description:
@@ -215,6 +217,7 @@ export const tourPackages = [
     slug: 'kintamani-volcano-penglipuran-tour',
     title: 'Kintamani Volcano, Penglipuran & Tegallalang Private Tour',
     category: 'Nature',
+    destinations: ['kintamani', 'ubud'],
     seo: {
       title: 'Kintamani Volcano, Penglipuran & Tegallalang Private Tour',
       description:
@@ -262,6 +265,7 @@ export const tourPackages = [
     slug: 'ubud-highlights-private-tour',
     title: 'Ubud Highlights, Monkey Forest & Waterfall Private Tour',
     category: 'Culture',
+    destinations: ['ubud'],
     seo: {
       title: 'Ubud Highlights, Monkey Forest & Waterfall Private Tour',
       description:
@@ -310,6 +314,7 @@ export const tourPackages = [
     slug: 'bali-atv-rafting-ubud-tour',
     title: 'Bali ATV, White-Water Rafting & Ubud Adventure Tour',
     category: 'Adventure',
+    destinations: ['ubud'],
     seo: {
       title: 'Bali ATV, White-Water Rafting & Ubud Adventure Tour',
       description:
@@ -367,6 +372,7 @@ export const tourPackages = [
     slug: 'bali-snorkeling-dolphin-tours',
     title: 'Bali Snorkeling, Menjangan Island & Dolphin Boat Tours',
     category: 'Marine',
+    destinations: [],
     seo: {
       title: 'Bali Snorkeling, Menjangan Island & Dolphin Boat Tours',
       description:
@@ -458,6 +464,7 @@ export const tourPackages = [
     slug: 'bali-family-kids-tour',
     title: 'Bali Family and Kids Adventure Private Tour',
     category: 'Family',
+    destinations: [],
     seo: {
       title: 'Bali Family and Kids Adventure Private Tour',
       description:
@@ -514,6 +521,7 @@ export const tourPackages = [
     slug: 'nusa-penida-tour-packages',
     title: 'Nusa Penida East, West & Snorkeling Day Tour Packages',
     category: 'Island',
+    destinations: ['nusa-penida'],
     seo: {
       title: 'Nusa Penida East, West & Snorkeling Day Tour Packages',
       description:
@@ -628,6 +636,7 @@ export const tourPackages = [
     slug: 'ubud-art-culture-tour',
     title: 'Ubud Art Village, Monkey Forest & Waterfall Tour',
     category: 'Culture',
+    destinations: ['ubud'],
     seo: {
       title: 'Ubud Art Village, Monkey Forest & Waterfall Tour',
       description:
@@ -675,6 +684,7 @@ export const tourPackages = [
     slug: 'lempuyang-heavens-gate-tour',
     title: 'Lempuyang Heaven’s Gate, Tirta Gangga & East Bali Tour',
     category: 'Culture',
+    destinations: ['karangasem'],
     seo: {
       title: 'Lempuyang Heaven’s Gate, Tirta Gangga & East Bali Tour',
       description:
@@ -720,6 +730,7 @@ export const tourPackages = [
     slug: 'mount-batur-sunrise-trekking-tour',
     title: 'Mount Batur Sunrise Trekking & Natural Hot Spring Tour',
     category: 'Adventure',
+    destinations: ['kintamani'],
     seo: {
       title: 'Mount Batur Sunrise Trekking & Natural Hot Spring Tour',
       description:
@@ -784,6 +795,7 @@ export const tourPackages = [
     slug: 'uluwatu-kecak-jimbaran-tour',
     title: 'Uluwatu Temple, Kecak Dance & Jimbaran Sunset Tour',
     category: 'Culture',
+    destinations: ['uluwatu'],
     seo: {
       title: 'Uluwatu Temple, Kecak Dance & Jimbaran Sunset Tour',
       description:

@@ -7,6 +7,7 @@ import Button from '@/components/ui/Button';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import Price from '@/components/ui/Price';
 import { whatsappLink } from '@/data/company';
+import { vehicleTitle } from './vehicles.data';
 import { useLoc } from '@/i18n/useLoc';
 
 const CARD_SIZES = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw';
@@ -25,6 +26,26 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
   const { t } = useTranslation();
   const loc = useLoc();
 
+  const title = vehicleTitle(vehicle);
+
+  // A group that spans several body types advertises its passenger range;
+  // a single-model group advertises its seat count.
+  const capacityText = vehicle.passengerRange
+    ? t('common.seatsRange', {
+        min: vehicle.passengerRange.min,
+        max: vehicle.passengerRange.max,
+      })
+    : `${vehicle.seats} ${t('common.seats')}`;
+
+  const luggageText = vehicle.luggage
+    ? t('common.luggageSummary', {
+        large: vehicle.luggage.largeMax
+          ? `${vehicle.luggage.large}–${vehicle.luggage.largeMax}`
+          : vehicle.luggage.large,
+        small: vehicle.luggage.small,
+      })
+    : null;
+
   return (
     // flex column + h-full so the CTA row is pinned to the bottom and every
     // card in a grid row ends at the same line despite differing text lengths.
@@ -36,7 +57,7 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
       <div className="relative h-48 overflow-hidden bg-primary-50">
         <OptimizedImage
           src={vehicle.image}
-          alt={`${vehicle.name} ${vehicle.year}`}
+          alt={title}
           sizes={CARD_SIZES}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
@@ -52,7 +73,7 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
           {vehicle.type}
         </span>
         <h3 className="mb-2 font-display text-lg font-bold text-primary-900">
-          {vehicle.name} {vehicle.year}
+          {title}
         </h3>
 
         <p className="mb-4 text-sm leading-relaxed text-primary-700/75">
@@ -61,14 +82,18 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
 
         <div className="mb-4 grid grid-cols-2 gap-2 text-xs text-primary-700/80">
           <span className="flex items-center gap-1">
-            <FiUsers aria-hidden /> {vehicle.seats} {t('common.seats')}
+            <FiUsers aria-hidden /> {capacityText}
           </span>
-          <span className="flex items-center gap-1">
-            <FiBriefcase aria-hidden /> {vehicle.luggage} {t('common.luggage')}
-          </span>
-          <span className="flex items-center gap-1">
-            <TbManualGearbox aria-hidden /> {vehicle.transmission}
-          </span>
+          {luggageText && (
+            <span className="flex items-center gap-1">
+              <FiBriefcase aria-hidden /> {luggageText}
+            </span>
+          )}
+          {vehicle.transmission && (
+            <span className="flex items-center gap-1">
+              <TbManualGearbox aria-hidden /> {vehicle.transmission}
+            </span>
+          )}
           {vehicle.ac && (
             <span className="flex items-center gap-1">
               <TbAirConditioning aria-hidden /> AC
@@ -104,11 +129,7 @@ function VehicleCard({ vehicle, onSelect, selected = false }) {
             <Button
               size="sm"
               variant="secondary"
-              href={whatsappLink(
-                t('vehicleBooking.enquiry', {
-                  name: `${vehicle.name} ${vehicle.year}`,
-                })
-              )}
+              href={whatsappLink(t('vehicleBooking.enquiry', { name: title }))}
             >
               {t('common.chatWhatsapp')}
             </Button>

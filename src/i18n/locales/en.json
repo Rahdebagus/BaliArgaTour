@@ -19,7 +19,9 @@
     "bookViaWhatsapp": "Book via WhatsApp",
     "loading": "Loading...",
     "seats": "seats",
+    "seatsRange": "{{min}}–{{max}} seats",
     "luggage": "luggage",
+    "luggageSummary": "{{large}} large · {{small}} small",
     "popular": "Popular",
     "explore": "Explore",
     "contactForQuote": "Contact us for a quote"
@@ -88,13 +90,13 @@
     "guestsOption": "{{count}} guests",
     "duration": "Duration",
     "anyDuration": "Any Duration",
-    "halfDay": "Half Day",
-    "fullDay": "Full Day",
+    "durationHours": "{{count}} hours",
+    "durationFlexible": "Flexible schedule",
     "price": "Budget",
     "anyPrice": "Any Budget",
-    "priceLow": "< IDR 1M",
-    "priceMid": "IDR 1–2M",
-    "priceHigh": "> IDR 2M",
+    "priceLow": "Under IDR 800k",
+    "priceMid": "IDR 800k – 1M",
+    "priceHigh": "Above IDR 1M",
     "button": "Find Tours"
   },
   "testimonials": {
@@ -138,7 +140,12 @@
   },
   "packagesPage": {
     "title": "Bali Tour Packages",
-    "subtitle": "Choose a package that matches your travel style."
+    "subtitle": "Choose a package that matches your travel style.",
+    "resultCount": "{{count}} tour matches your search",
+    "resultCount_other": "{{count}} tours match your search",
+    "clearFilters": "Clear all filters",
+    "emptyTitle": "No tours match your search",
+    "emptyText": "Try widening your filters, or message us on WhatsApp and we will plan something around your dates."
   },
   "packageDetail": {
     "about": "About This Package",

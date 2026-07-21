@@ -14,6 +14,7 @@
 import { company } from '@/data/company';
 import { formatCurrency } from '@/utils/format';
 import { isContactForPrice, usdToIdr } from '@/config/pricing';
+import { vehicleTitle } from './vehicles.data';
 
 /** How long a vehicle can be booked for in one request, in days. */
 export const RENTAL_DAY_LIMITS = { min: 1, max: 30 };
@@ -77,9 +78,7 @@ export function buildRentalMessage({ vehicle, form, estimate, t }) {
     '',
     t('vehicleBooking.wa.intro'),
     '',
-    `${t('vehicleBooking.wa.vehicle')}: ${
-      vehicle ? `${vehicle.name} ${vehicle.year}` : '-'
-    }`,
+    `${t('vehicleBooking.wa.vehicle')}: ${vehicleTitle(vehicle) || '-'}`,
     `${t('vehicleBooking.wa.date')}: ${form.date || '-'}`,
     `${t('vehicleBooking.wa.time')}: ${form.time || '-'}`,
     `${t('vehicleBooking.wa.pickup')}: ${form.pickup || '-'}`,

@@ -19,7 +19,9 @@
     "bookViaWhatsapp": "Booking via WhatsApp",
     "loading": "Memuat...",
     "seats": "kursi",
+    "seatsRange": "{{min}}–{{max}} kursi",
     "luggage": "bagasi",
+    "luggageSummary": "{{large}} besar · {{small}} kecil",
     "popular": "Populer",
     "explore": "Jelajahi",
     "contactForQuote": "Hubungi kami untuk penawaran"
@@ -88,13 +90,13 @@
     "guestsOption": "{{count}} tamu",
     "duration": "Durasi",
     "anyDuration": "Semua Durasi",
-    "halfDay": "Setengah Hari",
-    "fullDay": "Sehari Penuh",
+    "durationHours": "{{count}} jam",
+    "durationFlexible": "Jadwal fleksibel",
     "price": "Budget",
     "anyPrice": "Semua Budget",
-    "priceLow": "< Rp 1 jt",
-    "priceMid": "Rp 1–2 jt",
-    "priceHigh": "> Rp 2 jt",
+    "priceLow": "Di bawah Rp 800 rb",
+    "priceMid": "Rp 800 rb – 1 jt",
+    "priceHigh": "Di atas Rp 1 jt",
     "button": "Cari Tour"
   },
   "testimonials": {
@@ -138,7 +140,12 @@
   },
   "packagesPage": {
     "title": "Paket Tour Bali",
-    "subtitle": "Pilih paket yang sesuai dengan gaya liburan Anda."
+    "subtitle": "Pilih paket yang sesuai dengan gaya liburan Anda.",
+    "resultCount": "{{count}} tour sesuai pencarian Anda",
+    "resultCount_other": "{{count}} tour sesuai pencarian Anda",
+    "clearFilters": "Hapus semua filter",
+    "emptyTitle": "Tidak ada tour yang sesuai",
+    "emptyText": "Coba perluas filter Anda, atau hubungi kami di WhatsApp dan kami akan merencanakan tour sesuai tanggal Anda."
   },
   "packageDetail": {
     "about": "Tentang Paket Ini",

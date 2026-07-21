@@ -25,9 +25,13 @@ function PackageCard({ pkg }) {
       : t('packages.perPerson');
 
   return (
-    <Card>
-      <Link to={`/packages/${pkg.slug}`} className="block">
-        <div className="relative h-52 overflow-hidden">
+    // flex column + h-full so every card fills its grid cell and the price row
+    // lands on the same line across a row. Package cards are no longer uniform
+    // inside — a multi-option package has no single duration to show but gains
+    // a pricing-basis line — so without this the row bottoms come out ragged.
+    <Card className="flex h-full flex-col">
+      <Link to={`/packages/${pkg.slug}`} className="flex flex-1 flex-col">
+        <div className="relative h-52 shrink-0 overflow-hidden">
           <OptimizedImage
             src={pkg.image.webp}
             alt={pkg.alt}
@@ -39,7 +43,7 @@ function PackageCard({ pkg }) {
           </span>
         </div>
 
-        <div className="p-5">
+        <div className="flex flex-1 flex-col p-5">
           <h3 className="mb-2 font-display text-lg font-bold text-primary-900 line-clamp-2">
             {pkg.title}
           </h3>
@@ -62,7 +66,9 @@ function PackageCard({ pkg }) {
             ) : null}
           </div>
 
-          <div className="flex items-end justify-between border-t border-primary-100 pt-4">
+          {/* mt-auto pins the price row to the bottom of the card, so it lines
+              up across the row regardless of how much sits above it. */}
+          <div className="mt-auto flex items-end justify-between border-t border-primary-100 pt-4">
             <div>
               <span className="block text-xs text-primary-700/60">
                 {from ? t('common.startingFrom') : unitLabel}

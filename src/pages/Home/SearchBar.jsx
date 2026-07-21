@@ -10,6 +10,7 @@ import {
   FiCreditCard,
 } from 'react-icons/fi';
 import { packages } from '@/features/packages';
+import { durationOptions } from '@/features/packages/packageFilters';
 import { destinations } from '@/features/destinations';
 
 const selectClass =
@@ -40,6 +41,9 @@ export default function SearchBar() {
   const [guests, setGuests] = useState('2');
 
   const categories = [...new Set(packages.map((p) => p.category))];
+  // Both lists come from the catalogue, so the card can only ever offer a
+  // choice that returns results.
+  const durations = durationOptions(packages);
 
   const submit = (e) => {
     e.preventDefault();
@@ -104,8 +108,13 @@ export default function SearchBar() {
               className={selectClass}
             >
               <option value="">{t('search.anyDuration')}</option>
-              <option value="half">{t('search.halfDay')}</option>
-              <option value="full">{t('search.fullDay')}</option>
+              {durations.map((d) => (
+                <option key={d} value={d}>
+                  {d === 'flexible'
+                    ? t('search.durationFlexible')
+                    : t('search.durationHours', { count: Number(d) })}
+                </option>
+              ))}
             </select>
           </Field>
 

@@ -18,6 +18,7 @@ import { formatCurrency, usdToIdrLabel } from '@/utils/format';
 import { PRICE_DISCLAIMER } from '@/data/policies';
 import { useLoc } from '@/i18n/useLoc';
 import { RENTAL_DAY_LIMITS, RENTAL_PASSENGER_LIMITS } from './vehicleRental';
+import { vehicleTitle } from './vehicles.data';
 import { useVehicleRental, todayIso } from './useVehicleRental';
 
 const inputClass =
@@ -65,7 +66,7 @@ export default function VehicleBookingForm({ vehicle, onClose }) {
           <span className="hidden h-16 w-24 shrink-0 overflow-hidden rounded-xl bg-primary-50 sm:block">
             <OptimizedImage
               src={vehicle.image}
-              alt={`${vehicle.name} ${vehicle.year}`}
+              alt={vehicleTitle(vehicle)}
               sizes="6rem"
               className="h-full w-full object-cover"
             />
@@ -75,7 +76,7 @@ export default function VehicleBookingForm({ vehicle, onClose }) {
               {t('vehicleBooking.selectedVehicle')}
             </span>
             <h2 className="font-display text-xl font-bold text-primary-900">
-              {vehicle.name} {vehicle.year}
+              {vehicleTitle(vehicle)}
             </h2>
             <span className="mt-0.5 flex items-center gap-1.5 text-xs text-primary-700/70">
               <FiUsers aria-hidden />{' '}

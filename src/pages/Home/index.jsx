@@ -178,7 +178,13 @@ export default function Home() {
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {packages?.map((p, i) => (
-              <div key={p.id} className={i === 0 ? 'sm:col-span-2 lg:col-span-1 lg:row-span-2' : ''}>
+              // The lead card runs full-width on small screens, where a single
+              // wide card reads as a feature rather than as a stray half-row.
+              //
+              // It must NOT also span two rows on desktop: PackageCard sizes to
+              // its own content, so reserving a second row for it only opened a
+              // hole underneath and pushed the next two cards out of column one.
+              <div key={p.id} className={i === 0 ? 'sm:col-span-2 lg:col-span-1' : ''}>
                 <PackageCard pkg={p} />
               </div>
             ))}
@@ -187,8 +193,11 @@ export default function Home() {
         <SeeAll to="/packages" label={t('home.seeAllPackages')} />
       </Section>
 
-      {/* 03 — Travel memories: polaroids pinned on a light-blue board */}
-      <section className="paper-deckle-t overflow-hidden bg-primary-50 py-20 lg:py-28">
+      {/* 03 — Travel memories: polaroids pinned on a warm paper board.
+          Same `paper-layer` band as section 05, so the page alternates between
+          the plain page stock and a slightly deeper sheet rather than carrying
+          two unrelated tinted blocks. */}
+      <section className="paper-deckle-t overflow-hidden paper-layer py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
             index="03"
@@ -237,15 +246,19 @@ export default function Home() {
         <SeeAll to="/destinations" label={t('home.seeAllDestinations')} />
       </Section>
 
-      {/* 05 — Our journey with guests: asymmetric collage on dark band */}
-      <section className="paper-deckle-t bg-primary-900 py-20 lg:py-28">
+      {/* 05 — Our journey with guests: asymmetric collage on a warm paper band.
+          `paper-layer` rather than a flat paper tone: the surrounding sections
+          sit on the page background, which a flat #FBF7EF is barely two percent
+          away from, so the band — and the deckle scallop along its top edge —
+          would have disappeared into the page. The layer's gradient and
+          hairline edges keep it reading as a separate sheet. */}
+      <section className="paper-deckle-t paper-layer py-20 lg:py-28">
         <div className="container-page">
           <EditorialHeading
             index="05"
             kicker={t('journey.kicker')}
             title={t('journey.title')}
             lead={t('journey.lead')}
-            light
           />
           <JourneyGallery items={gallery || []} />
         </div>
